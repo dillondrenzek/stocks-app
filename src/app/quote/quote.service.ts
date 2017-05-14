@@ -19,28 +19,52 @@ export class QuoteService {
   /**
    * Saved Quotes
    */
-  private savedQuotes$ = new BehaviorSubject<Quote[]>([]);
+  private _savedQuotes: Quote[] = [];
+  private savedQuotes$ = new BehaviorSubject<Quote[]>(this._savedQuotes);
   savedQuotes: Observable<Quote[]> = this.savedQuotes$.asObservable();
+
+  private setSavedQuotes(quotes: Quote[]) {
+    this._savedQuotes = quotes;
+    this.savedQuotes$.next(this._savedQuotes);
+  }
+
+
+
 
   /**
    * Active Quote
    */
-  private activeQuote$ = new BehaviorSubject<Quote>(null);
+  private _activeQuote: Quote = null;
+  private activeQuote$ = new BehaviorSubject<Quote>(this._activeQuote);
   activeQuote: Observable<Quote> = this.activeQuote$.asObservable();
 
-
+  private setActiveQuote(quote: Quote) {
+    this._activeQuote = quote;
+    this.activeQuote$.next(this._activeQuote);
+  }
 
 
 
   /**
    * Search for a Quote from the MarkitOnDemand stocks api
+   * NOTE: This *Implicitly* sets the active quote
    */
   searchQuote(symbol: string) {
     return this.markitQuoteService.getQuote(symbol)
     .map((mq: MarkitQuote) => this.convertMarkitQuote(mq))
-    .subscribe((quote: Quote) => {
-      this.activeQuote$.next(quote)
-    });
+    .subscribe((quote: Quote) => this.setActiveQuote(quote));
+  }
+
+  /**
+   * Saves a quote to the array of saved quotes
+   */
+  saveQuote(symbol?: string) {
+    if (!symbol) {
+      // no symbol, save activeQuote
+      this.setSavedQuotes([this._activeQuote, ...this._savedQuotes]);
+    } else {
+      console.warn('No support for saving Quote by string yet');
+    }
   }
 
   /**

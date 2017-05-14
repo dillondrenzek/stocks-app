@@ -23,8 +23,16 @@ export class QuotePageComponent implements OnInit {
     return this.quoteService.savedQuotes;
   }
 
+  save() {
+    this.quoteService.saveQuote();
+  }
+
   search() {
     this.quoteService.searchQuote(this.quoteSearchInput);
+  }
+
+  clearSavedQuotes() {
+    this.quoteService.clearSavedQuotes();
   }
 
   ngOnInit() {}
