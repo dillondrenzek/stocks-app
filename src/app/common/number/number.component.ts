@@ -7,6 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NumberComponent {
 
-  @Input() value: string | number = '';
+  @Input() value: number = 0;
 
 }

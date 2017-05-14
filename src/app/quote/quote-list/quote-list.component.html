@@ -1,12 +1,20 @@
 <ul class="list-group">
   <li class="list-group-item clearfix" *ngFor="let quote of quotes">
     <div class="col-xs-8">
-      <h4 class="list-group-item-heading">{{quote.symbol}}</h4>
-      <p class="list-group-item-text">{{quote.name}}</p>
+      <h4 class="list-group-item-heading">
+        {{quote.symbol}}
+      </h4>
+      <p class="list-group-item-text">
+        {{quote.name}}
+      </p>
     </div>
     <div class="col-xs-4">
-      <h4 class="list-group-item-heading"><app-number [value]="quote.lastPrice"></app-number></h4>
-      <p class="list-group-item-text"><app-number [value]="quote.change"></app-number></p>
+      <h4 class="list-group-item-heading">
+        <app-number [value]="quote.lastPrice"></app-number>
+      </h4>
+      <p class="list-group-item-text">
+        <app-number [value]="quote.change"></app-number>
+      </p>
     </div>
   </li>
 </ul>

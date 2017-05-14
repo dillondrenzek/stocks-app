@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Quote } from '../quote.model';
+import { Quote } from '../quote';
 
 /**
  * Displays relevant information about a given Quote

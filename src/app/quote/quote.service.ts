@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable,
   BehaviorSubject } from 'rxjs/Rx';
-import { Quote } from './quote.model';
+import { Quote } from './quote';
 
 import { MarkitQuoteService } from '../vendor/markit';
 import { MarkitQuote } from '../vendor/markit';

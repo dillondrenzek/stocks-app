@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { QuoteService } from '../quote.service';
 
-import { Quote } from '../quote.model';
+import { Quote } from '../quote';
 
 @Component({
   selector: 'app-quote-page',

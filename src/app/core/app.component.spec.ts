@@ -3,10 +3,12 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '../common/common.module';
 
 import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
 import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
 import { QuoteDisplayComponent } from '../quote/quote-display/quote-display.component';
+import { QuotesAnalyticsComponent } from '../quote/quotes-analytics/quotes-analytics.component';
 import { QuoteService } from '../quote/quote.service';
 import { MockQuoteService } from '../quote/testing';
 
@@ -17,13 +19,15 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        CommonModule,
         FormsModule
       ],
       declarations: [
         AppComponent,
         QuotePageComponent,
         QuoteListComponent,
-        QuoteDisplayComponent
+        QuoteDisplayComponent,
+        QuotesAnalyticsComponent
       ],
       providers: [
         { provide: QuoteService, useClass: MockQuoteService },

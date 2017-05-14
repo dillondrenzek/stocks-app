@@ -5,6 +5,7 @@ import { QuotePageComponent } from './quote-page/quote-page.component';
 import { QuoteService } from './quote.service';
 import { QuoteListComponent } from './quote-list/quote-list.component';
 import { QuoteDisplayComponent } from './quote-display/quote-display.component';
+import { QuotesAnalyticsComponent } from './quotes-analytics/quotes-analytics.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { QuoteDisplayComponent } from './quote-display/quote-display.component';
   declarations: [
     QuotePageComponent,
     QuoteListComponent,
-    QuoteDisplayComponent
+    QuoteDisplayComponent,
+    QuotesAnalyticsComponent
   ],
   providers: [QuoteService]
 })

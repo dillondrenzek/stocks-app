@@ -22,4 +22,6 @@ describe('NumberComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  xit('should display its value to 2 decimal places', () => {});
 });

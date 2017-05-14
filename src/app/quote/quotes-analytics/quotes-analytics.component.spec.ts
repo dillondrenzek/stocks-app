@@ -2,22 +2,22 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '../../common/common.module';
 
-import { QuoteDisplayComponent } from './quote-display.component';
+import { QuotesAnalyticsComponent } from './quotes-analytics.component';
 
-describe('QuoteDisplayComponent', () => {
-  let component: QuoteDisplayComponent;
-  let fixture: ComponentFixture<QuoteDisplayComponent>;
+describe('QuotesAnalyticsComponent', () => {
+  let component: QuotesAnalyticsComponent;
+  let fixture: ComponentFixture<QuotesAnalyticsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
-      declarations: [ QuoteDisplayComponent ]
+      declarations: [ QuotesAnalyticsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuoteDisplayComponent);
+    fixture = TestBed.createComponent(QuotesAnalyticsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,8 +25,4 @@ describe('QuoteDisplayComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  xit('should display the input quote', () => {});
-
-  xit('should display an empty state when no input quote is given', () => {});
 });
