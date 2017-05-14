@@ -1,0 +1,1 @@
+{"Status":"SUCCESS","Name":"Adobe Systems Inc","Symbol":"ADBE","LastPrice":134.85,"Change":-0.150000000000006,"ChangePercent":-0.111111111111115,"Timestamp":"Wed May 3 00:00:00 UTC-04:00 2017","MSDate":42858,"MarketCap":66710025300,"Volume":1961370,"ChangeYTD":102.95,"ChangePercentYTD":30.9859154929577,"High":135.21,"Low":134.38,"Open":134.99}

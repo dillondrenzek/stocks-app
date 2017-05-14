@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { MarkitModule } from './vendor/markit/markit.module';
+import { QuoteModule } from './quote/quote.module';
 import { AppComponent } from './core/app.component';
 
 @NgModule({
@@ -12,7 +14,9 @@ import { AppComponent } from './core/app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MarkitModule,
+    QuoteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
