@@ -19,6 +19,9 @@ export class QuotePageComponent implements OnInit {
     return this.quoteService.activeQuote;
   }
 
+  get savedQuotes(): Observable<Quote[]> {
+    return this.quoteService.savedQuotes;
+  }
 
   search() {
     this.quoteService.searchQuote(this.quoteSearchInput);
