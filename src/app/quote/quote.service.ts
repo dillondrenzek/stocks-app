@@ -12,22 +12,19 @@ export class QuoteService {
   constructor(private markitQuoteService: MarkitQuoteService) { }
 
 
-
-
-
-
   /**
    * Saved Quotes
    */
   private _savedQuotes: Quote[] = [];
+
   private savedQuotes$ = new BehaviorSubject<Quote[]>(this._savedQuotes);
-  savedQuotes: Observable<Quote[]> = this.savedQuotes$.asObservable();
 
   private setSavedQuotes(quotes: Quote[]) {
     this._savedQuotes = quotes;
     this.savedQuotes$.next(this._savedQuotes);
   }
 
+  savedQuotes: Observable<Quote[]> = this.savedQuotes$.asObservable();
 
 
 
@@ -35,13 +32,16 @@ export class QuoteService {
    * Active Quote
    */
   private _activeQuote: Quote = null;
+
   private activeQuote$ = new BehaviorSubject<Quote>(this._activeQuote);
-  activeQuote: Observable<Quote> = this.activeQuote$.asObservable();
 
   private setActiveQuote(quote: Quote) {
     this._activeQuote = quote;
     this.activeQuote$.next(this._activeQuote);
   }
+
+  activeQuote: Observable<Quote> = this.activeQuote$.asObservable();
+
 
 
 
@@ -71,7 +71,7 @@ export class QuoteService {
    * Clear Saved Quotes
    */
   clearSavedQuotes() {
-    this.savedQuotes$.next([]);
+    this.setSavedQuotes([]);
   }
 
 
