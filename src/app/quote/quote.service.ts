@@ -47,7 +47,7 @@ export class QuoteService {
    * Clear Saved Quotes
    */
   clearSavedQuotes() {
-
+    this.savedQuotes$.next([]);
   }
 
 
