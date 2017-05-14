@@ -1,15 +1,28 @@
 <ng-container *ngIf="quote">
   <div class="col-xs-12 symbol">
-    <span class="h2"><small>symbol</small> {{quote.symbol | uppercase}}</span>
+    <span class="h2">
+      <small>symbol</small> {{quote.symbol | uppercase}}
+    </span>
+  </div>
+  <div class="col-xs-12 name">
+    <span class="h2">
+      <small>name</small> {{quote.name}}
+    </span>
   </div>
   <div class="col-xs-12 last-price">
-    <span class="h2"><small>last price</small> {{quote.lastPrice | number:'1.2-2'}}</span>
+    <span class="h2">
+      <small>last price</small> <app-number [value]="quote.lastPrice"></app-number>
+    </span>
   </div>
   <div class="col-xs-12 change">
-    <span class="h2"><small>change</small> {{quote.change | number:'1.2-2'}}</span>
+    <span class="h2">
+      <small>change</small> <app-number [value]="quote.change"></app-number>
+    </span>
   </div>
   <div class="col-xs-12 change-percent">
-    <span class="h2"><small>change %</small> ({{quote.changePercent | number:'1.2-2'}}%)</span>
+    <span class="h2">
+      <small>change %</small> <app-number [value]="quote.changePercent"></app-number>
+    </span>
   </div>
 </ng-container>
 

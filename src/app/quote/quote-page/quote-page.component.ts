@@ -13,7 +13,7 @@ export class QuotePageComponent implements OnInit {
 
   constructor(private quoteService: QuoteService) { }
 
-  quoteSearchInput: string = '';
+  quoteSearchInput: string = 'ADBE';
 
   get activeQuote(): Observable<Quote> {
     return this.quoteService.activeQuote;
@@ -35,5 +35,7 @@ export class QuotePageComponent implements OnInit {
     this.quoteService.clearSavedQuotes();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.search();
+  }
 }
