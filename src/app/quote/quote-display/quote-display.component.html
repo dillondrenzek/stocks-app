@@ -1,0 +1,20 @@
+<ng-container *ngIf="quote">
+  <div class="col-xs-12 symbol">
+    <span class="h2"><small>symbol</small> ADBE</span>
+  </div>
+  <div class="col-xs-12 last-price">
+    <span class="h2"><small>last price</small> 145.65</span>
+  </div>
+  <div class="col-xs-12 change">
+    <span class="h3"><small>change</small> 0.43</span>
+  </div>
+  <div class="col-xs-12 change-percent">
+    <span class="h4"><small>change %</small> (0.14%)</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!quote">
+  <div class="empty">
+    No Active Quote
+  </div>
+</ng-container>

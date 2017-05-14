@@ -14,18 +14,7 @@
 
       <div class="row">
 
-        <div class="col-xs-12">
-          <app-quote-symbol [symbol]="symbol | async"></app-quote-symbol>
-        </div>
-        <div class="col-xs-12">
-          <span class="h2"><small>last price</small> 145.65</span>
-        </div>
-        <div class="col-xs-12">
-          <span class="h3"><small>change</small> 0.43</span>
-        </div>
-        <div class="col-xs-12">
-          <span class="h4"><small>change %</small> (0.14%)</span>
-        </div>
+        <app-quote-display [quote]="activeQuote"></app-quote-display>
       </div>
 
 

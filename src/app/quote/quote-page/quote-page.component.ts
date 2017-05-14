@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { QuoteService } from '../quote.service';
 
+import { Quote } from '../quote.model';
+
 @Component({
   selector: 'app-quote-page',
   templateUrl: './quote-page.component.html',
@@ -13,9 +15,10 @@ export class QuotePageComponent implements OnInit {
 
   quoteSearchInput: string = '';
 
-  get lastPrice(): Observable<number> {
-    return this.quoteService.activeQuote.map(q => q.lastPrice);
+  get activeQuote(): Observable<Quote> {
+    return this.quoteService.activeQuote;
   }
+
 
   search() {
     this.quoteService.searchQuote(this.quoteSearchInput);
