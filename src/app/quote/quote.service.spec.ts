@@ -16,7 +16,26 @@ describe('QuoteService', () => {
     });
   });
 
-  it('should create', inject([QuoteService], (service: QuoteService) => {
-    expect(service).toBeTruthy();
-  }));
+  describe('.searchQuote()', () => {
+
+    xit('- should emit the active quote when successful', inject([QuoteService], (service: QuoteService) => {}));
+
+    xit('- should set the active quote when successful', inject([QuoteService], (service: QuoteService) => {}));
+
+  });
+
+  describe('.saveQuote()', () => {
+
+    xit('- should save the active quote when no symbol is passed', inject([QuoteService], (service: QuoteService) => {}));
+
+    xit('- should save the quote with the given symbol when the symbol is passed', inject([QuoteService], (service: QuoteService) => {}));
+
+    xit('- should extend the length of the saved quotes array by 1', inject([QuoteService], (service: QuoteService) => {}));
+
+  });
+  describe('.clearSavedQuotes()', () => {
+
+    xit('- should reset the saved quotes array to a length of 0', inject([QuoteService], (service: QuoteService) => {}));
+
+  });
 });
