@@ -1,10 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { QuotePageComponent } from './quote-page.component';
 
 // Test Dependencies
-import { QuoteSymbolComponent } from '../quote-symbol/quote-symbol.component';
+import { QuoteDisplayComponent } from '../quote-display/quote-display.component';
 import { QuoteListComponent } from '../quote-list/quote-list.component';
+import { QuoteService } from '../quote.service';
+import { MockQuoteService } from '../testing';
+
+import { MarkitQuoteService } from '../../vendor/markit';
+import { MockMarkitQuoteService} from '../../vendor/markit/testing';
 
 describe('QuotePageComponent', () => {
   let component: QuotePageComponent;
@@ -12,10 +17,17 @@ describe('QuotePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [
-        QuotePageComponent, 
+        QuotePageComponent,
         QuoteListComponent,
-        QuoteSymbolComponent
+        QuoteDisplayComponent
+      ],
+      providers: [
+        { provide: QuoteService, useClass: MockQuoteService },
+        { provide: MarkitQuoteService, useClass: MockMarkitQuoteService }
       ]
     })
     .compileComponents();

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable, Subscriber } from 'rxjs/Rx';
 
-import { MarkitQuote } from './MarkitQuote';
+import { MarkitQuote } from '../MarkitQuote';
 
 @Injectable()
 export class MockMarkitQuoteService {

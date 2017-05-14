@@ -1,20 +1,22 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { QuoteService } from './quote.service';
+import { MockQuoteService } from './testing';
 
-import { MarkitQuoteService, MockMarkitQuoteService } from '../vendor/markit';
+import { MarkitQuoteService } from '../vendor/markit';
+import { MockMarkitQuoteService} from '../vendor/markit/testing';
 
 describe('QuoteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        QuoteService,
-        MarkitQuoteService
+        { provide: QuoteService, useClass: MockQuoteService },
+        { provide: MarkitQuoteService, useClass: MockMarkitQuoteService }
       ]
     });
   });
 
-  it('should ...', inject([QuoteService], (service: QuoteService) => {
+  it('should create', inject([QuoteService], (service: QuoteService) => {
     expect(service).toBeTruthy();
   }));
 });

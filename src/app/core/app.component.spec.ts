@@ -6,7 +6,12 @@ import { FormsModule } from '@angular/forms';
 
 import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
 import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
-import { QuoteSymbolComponent } from '../quote/quote-symbol/quote-symbol.component';
+import { QuoteDisplayComponent } from '../quote/quote-display/quote-display.component';
+import { QuoteService } from '../quote/quote.service';
+import { MockQuoteService } from '../quote/testing';
+
+import { MarkitQuoteService } from '../vendor/markit';
+import { MockMarkitQuoteService} from '../vendor/markit/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -18,8 +23,12 @@ describe('AppComponent', () => {
         AppComponent,
         QuotePageComponent,
         QuoteListComponent,
-        QuoteSymbolComponent
+        QuoteDisplayComponent
       ],
+      providers: [
+        { provide: QuoteService, useClass: MockQuoteService },
+        { provide: MarkitQuoteService, useClass: MockMarkitQuoteService }
+      ]
     }).compileComponents();
   }));
 
@@ -27,18 +36,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
   }));
 });
