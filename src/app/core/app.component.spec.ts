@@ -2,11 +2,23 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
+import { FormsModule } from '@angular/forms';
+
+import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
+import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
+import { QuoteSymbolComponent } from '../quote/quote-symbol/quote-symbol.component';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [
-        AppComponent
+        AppComponent,
+        QuotePageComponent,
+        QuoteListComponent,
+        QuoteSymbolComponent
       ],
     }).compileComponents();
   }));

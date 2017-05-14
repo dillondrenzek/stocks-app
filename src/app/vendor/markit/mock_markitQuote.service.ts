@@ -13,19 +13,19 @@ export class MockMarkitQuoteService {
   getQuote(quote: string): Observable<MarkitQuote> {
     return Observable.create((obs: Subscriber<MarkitQuote>) => {
 
-      $.ajax({
-        data: { symbol: quote },
-        url: this.DATA_SRC,
-        dataType: "jsonp",
-        success: (res: MarkitQuote) => {
-          obs.next(res);
-          obs.complete();
-        },
-        error: (err) => {
-          obs.error(err);
-          obs.complete();
-        }
-      });
+      // $.ajax({
+      //   data: { symbol: quote },
+      //   url: this.DATA_SRC,
+      //   dataType: "jsonp",
+      //   success: (res: MarkitQuote) => {
+      //     obs.next(res);
+      //     obs.complete();
+      //   },
+      //   error: (err) => {
+      //     obs.error(err);
+      //     obs.complete();
+      //   }
+      // });
 
     })
   }

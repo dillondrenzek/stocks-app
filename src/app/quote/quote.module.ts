@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { QuotePageComponent } from './quote-page/quote-page.component';
 import { QuoteSymbolComponent } from './quote-symbol/quote-symbol.component';
 import { QuoteService } from './quote.service';
+import { QuoteListComponent } from './quote-list/quote-list.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { QuoteService } from './quote.service';
   ],
   declarations: [
     QuotePageComponent,
-    QuoteSymbolComponent
+    QuoteSymbolComponent,
+    QuoteListComponent
   ],
   providers: [QuoteService]
 })

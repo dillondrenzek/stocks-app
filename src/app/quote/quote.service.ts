@@ -9,13 +9,32 @@ import { MarkitQuote } from '../vendor/markit';
 @Injectable()
 export class QuoteService {
 
-
-  private activeQuote$ = new BehaviorSubject<Quote>(null);
-  activeQuote: Observable<Quote> = this.activeQuote$.asObservable();
-
   constructor(private markitQuoteService: MarkitQuoteService) { }
 
 
+
+
+
+
+  /**
+   * Saved Quotes
+   */
+  private savedQuotes$ = new BehaviorSubject<Quote[]>([]);
+  savedQuotes: Observable<Quote[]> = this.savedQuotes$.asObservable();
+
+  /**
+   * Active Quote
+   */
+  private activeQuote$ = new BehaviorSubject<Quote>(null);
+  activeQuote: Observable<Quote> = this.activeQuote$.asObservable();
+
+
+
+
+
+  /**
+   * Search for a Quote from the MarkitOnDemand stocks api
+   */
   searchQuote(symbol: string) {
     return this.markitQuoteService.getQuote(symbol)
     .map((mq: MarkitQuote) => this.convertMarkitQuote(mq))
@@ -24,7 +43,16 @@ export class QuoteService {
     });
   }
 
-  convertMarkitQuote(mq: MarkitQuote): Quote {
+  /**
+   * Clear Saved Quotes
+   */
+  clearSavedQuotes() {
+
+  }
+
+
+
+  private convertMarkitQuote(mq: MarkitQuote): Quote {
     return {
       name: mq.Name,
       symbol: mq.Symbol,

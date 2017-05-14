@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuoteSymbolComponent } from './quote-symbol.component';
+import { QuoteService } from '../quote.service';
 
 describe('QuoteSymbolComponent', () => {
   let component: QuoteSymbolComponent;
@@ -8,7 +9,12 @@ describe('QuoteSymbolComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuoteSymbolComponent ]
+      declarations: [
+        QuoteSymbolComponent
+      ],
+      providers: [
+        QuoteService
+      ]
     })
     .compileComponents();
   }));
