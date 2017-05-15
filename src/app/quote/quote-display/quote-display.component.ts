@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Quote } from '../quote';
 
@@ -10,12 +10,8 @@ import { Quote } from '../quote';
   templateUrl: './quote-display.component.html',
   styleUrls: ['./quote-display.component.css']
 })
-export class QuoteDisplayComponent implements OnInit {
+export class QuoteDisplayComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   @Input() quote: Quote = null;
 

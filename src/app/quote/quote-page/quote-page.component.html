@@ -27,6 +27,7 @@
     <div class="panel-footer">
       <button type="button" class="btn btn-primary btn-block" (click)="search()">Search</button>
       <button type="button" class="btn btn-success btn-block" (click)="save()">Save</button>
+      <button type="button" class="btn btn-default btn-block" (click)="clearSavedQuotes()">Clear Saved</button>
     </div>
   </div>
 
@@ -40,12 +41,7 @@
     <div class="panel-heading">
       Saved Quotes
     </div>
-    <div class="panel-body">
-      <button type="button" class="btn btn-default" (click)="clearSavedQuotes()">Clear</button>
-    </div>
-    <div class="panel-footer">
-      <app-quote-list [quotes]="savedQuotes | async"></app-quote-list>
-    </div>
+    <app-quote-list [quotes]="savedQuotes | async"></app-quote-list>
 
   </div>
 
