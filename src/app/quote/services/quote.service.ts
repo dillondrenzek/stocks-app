@@ -1,30 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable,
   BehaviorSubject } from 'rxjs/Rx';
-import { Quote } from './quote';
-
-import { MarkitQuoteService } from '../vendor/markit';
-import { MarkitQuote } from '../vendor/markit';
+import { Quote } from '../quote';
+import { SavedQuotesService } from './saved-quotes.service';
+import { MarkitQuoteService } from '../../vendor/markit';
+import { MarkitQuote } from '../../vendor/markit';
 
 @Injectable()
 export class QuoteService {
 
-  constructor(private markitQuoteService: MarkitQuoteService) { }
+  constructor(
+    private markitQuoteService: MarkitQuoteService,
+    private savedQuotesService: SavedQuotesService
+  ) { }
 
 
   /**
    * Saved Quotes
    */
-  private _savedQuotes: Quote[] = [];
-
-  private savedQuotes$ = new BehaviorSubject<Quote[]>(this._savedQuotes);
-
-  private setSavedQuotes(quotes: Quote[]) {
-    this._savedQuotes = quotes;
-    this.savedQuotes$.next(this._savedQuotes);
+  get savedQuotes(): Observable<Quote[]> {
+    return this.savedQuotesService.savedQuotes;
   }
-
-  savedQuotes: Observable<Quote[]> = this.savedQuotes$.asObservable();
 
 
 
@@ -36,6 +32,7 @@ export class QuoteService {
   private activeQuote$ = new BehaviorSubject<Quote>(this._activeQuote);
 
   private setActiveQuote(quote: Quote) {
+    console.info('quote:', quote);
     this._activeQuote = quote;
     this.activeQuote$.next(this._activeQuote);
   }
@@ -56,22 +53,17 @@ export class QuoteService {
   }
 
   /**
-   * Saves a quote to the array of saved quotes
+   * Saves the active quote to the saved quotes array
    */
-  saveQuote(symbol?: string) {
-    if (!symbol) {
-      // no symbol, save activeQuote
-      this.setSavedQuotes([this._activeQuote, ...this._savedQuotes]);
-    } else {
-      console.warn('No support for saving Quote by string yet');
-    }
+  saveActiveQuote() {
+    this.savedQuotesService.saveQuote(this._activeQuote);
   }
 
   /**
    * Clear Saved Quotes
    */
   clearSavedQuotes() {
-    this.setSavedQuotes([]);
+    this.savedQuotesService.clearQuotes();
   }
 
 

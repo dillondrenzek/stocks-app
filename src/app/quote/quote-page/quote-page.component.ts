@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { QuoteService } from '../quote.service';
+import { QuoteService } from '../services/quote.service';
 
 import { Quote } from '../quote';
 
@@ -24,7 +24,7 @@ export class QuotePageComponent implements OnInit {
   }
 
   save() {
-    this.quoteService.saveQuote();
+    this.quoteService.saveActiveQuote();
   }
 
   search() {

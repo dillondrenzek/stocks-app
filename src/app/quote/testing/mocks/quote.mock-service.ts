@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { Quote } from '../../quote';
 import { MarkitQuoteService, MarkitQuote } from '../../../vendor/markit';
 
+import { MY_EXAMPLE_QUOTES } from '../examples/quote';
 
 @Injectable()
 export class MockQuoteService {
@@ -13,7 +14,7 @@ export class MockQuoteService {
   /**
    * Saved Quotes
    */
-  private _savedQuotes: Quote[] = [];
+  private _savedQuotes: Quote[] = MY_EXAMPLE_QUOTES;
 
   private savedQuotes$ = new BehaviorSubject<Quote[]>(this._savedQuotes);
 

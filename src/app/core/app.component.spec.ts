@@ -9,7 +9,7 @@ import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
 import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
 import { QuoteDisplayComponent } from '../quote/quote-display/quote-display.component';
 import { QuotesAnalyticsComponent } from '../quote/quotes-analytics/quotes-analytics.component';
-import { QuoteService } from '../quote/quote.service';
+import { QuoteService } from '../quote/services/quote.service';
 import { MockQuoteService } from '../quote/testing';
 
 import { MarkitQuoteService } from '../vendor/markit';

@@ -1,1 +1,2 @@
-export { MockQuoteService } from './mocks/quote.mock-service';
+export * from './examples/quote';
+export * from './mocks/quote.mock-service';

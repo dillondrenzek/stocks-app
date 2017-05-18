@@ -8,7 +8,7 @@ import { CommonModule } from '../../common/common.module';
 import { QuoteDisplayComponent } from '../quote-display/quote-display.component';
 import { QuoteListComponent } from '../quote-list/quote-list.component';
 import { QuotesAnalyticsComponent } from '../quotes-analytics/quotes-analytics.component';
-import { QuoteService } from '../quote.service';
+import { QuoteService } from '../services/quote.service';
 import { MockQuoteService } from '../testing';
 
 import { MarkitQuoteService } from '../../vendor/markit';

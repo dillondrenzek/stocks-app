@@ -13,19 +13,23 @@ export class MockMarkitQuoteService {
   getQuote(quote: string): Observable<MarkitQuote> {
     return Observable.create((obs: Subscriber<MarkitQuote>) => {
 
-      // $.ajax({
-      //   data: { symbol: quote },
-      //   url: this.DATA_SRC,
-      //   dataType: "jsonp",
-      //   success: (res: MarkitQuote) => {
-      //     obs.next(res);
-      //     obs.complete();
-      //   },
-      //   error: (err) => {
-      //     obs.error(err);
-      //     obs.complete();
-      //   }
-      // });
+      return {
+        Status: 'SUCCESS',
+        Name: 'Test',
+        Symbol: quote,
+        LastPrice: 123.45,
+        Change: 0.12,
+        ChangePercent: 1.34,
+        Timestamp: 'timestap',
+        MSDate: 'msdate?',
+        MarketCap: 0,
+        Volume: 0.00,
+        ChangeYTD: 0.00,
+        ChangePercentYTD: 0.00,
+        High: 0.00,
+        Low: 0.00,
+        Open: 0.00
+      };
 
     })
   }
