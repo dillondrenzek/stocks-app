@@ -3,10 +3,18 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 import { Quote } from '../quote';
 
+const SAVED_QUOTES_LOCALSTORAGE = 'saved_quotes';
+
+
 @Injectable()
 export class SavedQuotesService {
 
-  constructor() { }
+
+
+  constructor() {
+
+    this.setSavedQuotes(this.getCachedQuotes());
+  }
 
   /**
    * Private State
@@ -14,8 +22,10 @@ export class SavedQuotesService {
   private _savedQuotes = [];
   private savedQuotes$ = new BehaviorSubject<Quote[]>(this._savedQuotes);
   private setSavedQuotes(quotes: Quote[]) {
+    quotes = quotes || [];
     this._savedQuotes = quotes;
     this.savedQuotes$.next(quotes);
+    localStorage.setItem(SAVED_QUOTES_LOCALSTORAGE, JSON.stringify(quotes));
   }
 
   /**
@@ -28,10 +38,16 @@ export class SavedQuotesService {
     return this._savedQuotes;
   }
 
-
+  getCachedQuotes(): Quote[] {
+    let cached: string = localStorage.getItem(SAVED_QUOTES_LOCALSTORAGE);
+    let cachedArr: Quote[]= (cached)
+      ? <Quote[]>JSON.parse(cached)
+      : null;
+    return cachedArr;
+  }
 
   saveQuote(quote: Quote): Observable<Quote> {
-    let save = Object.assign({}, quote);
+    const save = Object.assign({}, quote);
     this.setSavedQuotes([
       save,
       ...this._savedQuotes
@@ -40,7 +56,7 @@ export class SavedQuotesService {
   }
 
   removeQuote(quote: Quote): Observable<Quote> {
-    let savedQuotes = this._savedQuotes.filter(q => q !== quote);
+    const savedQuotes = this._savedQuotes.filter(q => q !== quote);
     this.setSavedQuotes(savedQuotes);
     return Observable.of(quote);
   }

@@ -5,7 +5,8 @@ export const TEST_QUOTE: Quote = {
   symbol: "TEST",
   lastPrice: 34.56,
   change: 0.550000000000011,
-  changePercent: 0.403551251008887
+  changePercent: 0.403551251008887,
+  lastUpdated: new Date().toISOString()
 }
 
 

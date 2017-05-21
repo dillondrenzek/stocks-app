@@ -14,6 +14,9 @@ describe('SavedQuotesService', () => {
   it('should save a quote', inject([SavedQuotesService], (service: SavedQuotesService) => {
     let test: Quote = testing.TEST_QUOTE;
 
+    // before: expect saved not to contain symbol
+    expect(service.getSavedQuotes().map(x => x.symbol)).not.toContain(test.symbol);
+
     service.saveQuote(test).subscribe((q: Quote) => {
       let saved = service.getSavedQuotes();
       // expect saved to contain the returned copy of saveQuote
@@ -29,6 +32,10 @@ describe('SavedQuotesService', () => {
     let test: Quote = testing.TEST_QUOTE;
     // first save a quote
     service.saveQuote(test)
+      .map(q => {
+        expect(service.getSavedQuotes().map(x => x.symbol)).toContain(test.symbol);
+        return q;
+      })
       // then remove it
       .flatMap(q => service.removeQuote(q))
       .subscribe((q: Quote) => {

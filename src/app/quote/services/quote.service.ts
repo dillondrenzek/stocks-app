@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable,
   BehaviorSubject } from 'rxjs/Rx';
-import { Quote } from '../quote';
+import { Quote, QuoteFactory } from '../quote';
 import { SavedQuotesService } from './saved-quotes.service';
 import { MarkitQuoteService } from '../../vendor/markit';
 import { MarkitQuote } from '../../vendor/markit';
@@ -32,7 +32,7 @@ export class QuoteService {
   private activeQuote$ = new BehaviorSubject<Quote>(this._activeQuote);
 
   private setActiveQuote(quote: Quote) {
-    console.info('quote:', quote);
+    console.info('setActiveQuote:', quote);
     this._activeQuote = quote;
     this.activeQuote$.next(this._activeQuote);
   }
@@ -48,7 +48,7 @@ export class QuoteService {
    */
   searchQuote(symbol: string) {
     return this.markitQuoteService.getQuote(symbol)
-    .map((mq: MarkitQuote) => this.convertMarkitQuote(mq))
+    .map((mq: MarkitQuote) => QuoteFactory.fromMarkitQuote(mq))
     .subscribe((quote: Quote) => this.setActiveQuote(quote));
   }
 
@@ -66,16 +66,5 @@ export class QuoteService {
     this.savedQuotesService.clearQuotes();
   }
 
-
-
-  private convertMarkitQuote(mq: MarkitQuote): Quote {
-    return {
-      name: mq.Name,
-      symbol: mq.Symbol,
-      lastPrice: mq.LastPrice,
-      change: mq.Change,
-      changePercent: mq.ChangePercent
-    };
-  }
 
 }

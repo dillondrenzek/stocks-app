@@ -24,6 +24,11 @@
       <small>change %</small> <app-number [value]="quote.changePercent"></app-number>
     </span>
   </div>
+  <div class="col-xs-12 change-percent">
+    <span class="h2">
+      <small>last updated</small> {{quote.lastUpdated | date:'short'}}
+    </span>
+  </div>
 </ng-container>
 
 <ng-container *ngIf="!quote">
