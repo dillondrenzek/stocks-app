@@ -22,9 +22,9 @@ describe('QuoteListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('on click', () => {
+    xit('should emit an event', () => {});
+    xit('should emit the Quote that was clicked',  () => {});
   });
 
-  xit('should show an empty state when no quotes are input', () => {});
 });

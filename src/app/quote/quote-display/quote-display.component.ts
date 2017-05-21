@@ -12,7 +12,6 @@ import { Quote } from '../quote';
 })
 export class QuoteDisplayComponent {
 
-
   @Input() quote: Quote = null;
 
 }

@@ -22,11 +22,8 @@ describe('QuoteDisplayComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  xit('should display an input Quote', () => {
+    
   });
 
-  xit('should display the input quote', () => {});
-
-  xit('should display an empty state when no input quote is given', () => {});
 });

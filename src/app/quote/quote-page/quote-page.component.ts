@@ -31,6 +31,10 @@ export class QuotePageComponent implements OnInit {
     this.quoteService.searchQuote(this.quoteSearchInput);
   }
 
+  refreshSavedQuotes() {
+    // this.quoteService.
+  }
+
   clearSavedQuotes() {
     this.quoteService.clearSavedQuotes();
   }

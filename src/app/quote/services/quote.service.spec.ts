@@ -17,31 +17,7 @@ describe('QuoteService', () => {
     });
   });
 
-  describe('.searchQuote()', () => {
 
-    it('- should emit the active quote when successful', inject([QuoteService], (service: QuoteService) => {
-      // set up spy
-      const callback = () => {};
-      const obj = {callback: callback};
-      spyOn(obj, 'callback');
-      // subscribe with spy'd function
-      service.activeQuote.subscribe(obj.callback);
-      // perform search
-      const test_expect = 'TEST';
-      service.searchQuote(test_expect);
-      // expect
-      expect(obj.callback).toHaveBeenCalled();
-    }));
 
-    it('- should set the active quote when successful', inject([QuoteService], (service: QuoteService, done) => {
-      let symbol = 'TEST';
-      service.activeQuote.subscribe((quote: Quote) => {
-        expect(quote.symbol).toEqual(symbol);
-        done();
-      });
-      service.searchQuote(symbol);
-    }));
-
-  });
 
 });
