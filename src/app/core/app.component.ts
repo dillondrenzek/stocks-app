@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import * as tokens from './tokens';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Stocks';
-  version = 'v0.1.4';
+
+  get version(): string {
+    return this.appVersion;
+  }
+
+  constructor(
+    @Inject(tokens.APP_VERSION) private appVersion: string,
+    private titleService: Title
+  ) { }
+
+  ngOnInit() {
+    let existingTitle = this.titleService.getTitle();
+    this.titleService.setTitle(existingTitle + ' | ' + this.version);
+  }
 }

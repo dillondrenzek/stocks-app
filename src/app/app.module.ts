@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { MarkitModule } from './vendor/markit/markit.module';
 import { QuoteModule } from './quote/quote.module';
 import { AppComponent } from './core/app.component';
-import { USE_LOCAL_STORAGE } from './core/tokens';
+import * as tokens from './core/tokens';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { USE_LOCAL_STORAGE } from './core/tokens';
     QuoteModule
   ],
   providers: [
-    { provide: USE_LOCAL_STORAGE, useValue: true }
+    { provide: tokens.USE_LOCAL_STORAGE, useValue: true },
+    { provide: tokens.APP_VERSION, useValue: 'v0.1.5' }
   ],
   bootstrap: [AppComponent]
 })
