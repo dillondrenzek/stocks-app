@@ -14,7 +14,7 @@ const SAVED_QUOTES_LOCALSTORAGE = 'saved_quotes';
 export class SavedQuotesService {
 
   constructor(
-    @Inject(USE_LOCAL_STORAGE) private useLocalStorage: boolean = true
+    @Inject(USE_LOCAL_STORAGE) private useLocalStorage: boolean
   ) {
     let cachedQuotes: Quote[] = (useLocalStorage) ? this.getCachedQuotes() : [];
     this.setSavedQuotes(cachedQuotes);

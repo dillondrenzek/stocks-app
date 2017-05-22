@@ -1,0 +1,11 @@
+:host.positive {
+  color: green;
+}
+
+:host.negative {
+  color: red;
+}
+
+:host.zero {
+  color: gray;
+}
