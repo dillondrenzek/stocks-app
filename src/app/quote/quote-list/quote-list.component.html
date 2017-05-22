@@ -1,5 +1,6 @@
 <ul class="list-group">
-  <li class="list-group-item clearfix" *ngFor="let quote of quotes">
+
+  <li class="list-group-item quote clearfix" (click)="clickedQuote.emit(quote)" *ngFor="let quote of quotes">
     <div class="col-xs-8">
       <h4 class="list-group-item-heading">
         {{quote.symbol}}
@@ -9,7 +10,7 @@
         {{quote.name}}
       </p>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-2">
       <h4 class="list-group-item-heading">
         <app-number [value]="quote.lastPrice"></app-number>
       </h4>
@@ -17,5 +18,9 @@
         <app-number [value]="quote.change"></app-number>
       </p>
     </div>
+    <div class="col-xs-2">
+      <a class="btn btn-link accessory" (click)="clickedQuoteAccessory.emit(quote)">Remove</a>
+    </div>
   </li>
+
 </ul>

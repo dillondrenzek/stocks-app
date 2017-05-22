@@ -11,9 +11,13 @@ export class QuoteListComponent implements OnInit {
 
   constructor() { }
 
+  @Input() quotes: Quote[] = [];
+
+  @Output() clickedQuote = new EventEmitter<Quote>();
+  
+  @Output() clickedQuoteAccessory = new EventEmitter<Quote>();
+
   ngOnInit() {
   }
-
-  @Input() quotes: Quote[] = [];
 
 }
