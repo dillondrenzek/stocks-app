@@ -41,9 +41,10 @@
     <div class="panel-heading">
       Saved Quotes
       <a class="btn btn-link" (click)="clearSavedQuotes()">Clear</a>
-      <a class="btn btn-link" (click)="clearSavedQuotes()">Clear</a>
     </div>
-    <app-quote-list [quotes]="savedQuotes | async"></app-quote-list>
+    <app-quote-list [quotes]="savedQuotes | async"
+      (clickedQuote)="setActiveQuote($event)"
+      (clickedQuoteAccessory)="removeQuote($event)"></app-quote-list>
 
   </div>
 

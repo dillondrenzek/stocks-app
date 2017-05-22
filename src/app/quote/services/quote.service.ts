@@ -31,7 +31,7 @@ export class QuoteService {
 
   private activeQuote$ = new BehaviorSubject<Quote>(this._activeQuote);
 
-  private setActiveQuote(quote: Quote) {
+  setActiveQuote(quote: Quote) {
     console.info('setActiveQuote:', quote);
     this._activeQuote = quote;
     this.activeQuote$.next(this._activeQuote);
@@ -57,6 +57,13 @@ export class QuoteService {
    */
   saveActiveQuote() {
     this.savedQuotesService.saveQuote(this._activeQuote);
+  }
+
+  /**
+   * Removes a quote from the saved quotes
+   */
+  removeQuote(q: Quote) {
+    this.savedQuotesService.removeQuote(q);
   }
 
   /**

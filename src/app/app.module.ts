@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { MarkitModule } from './vendor/markit/markit.module';
 import { QuoteModule } from './quote/quote.module';
 import { AppComponent } from './core/app.component';
+import { USE_LOCAL_STORAGE } from './core/tokens';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { AppComponent } from './core/app.component';
     MarkitModule,
     QuoteModule
   ],
-  providers: [],
+  providers: [
+    { provide: USE_LOCAL_STORAGE, useValue: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
