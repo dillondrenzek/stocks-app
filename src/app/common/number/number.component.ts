@@ -13,10 +13,6 @@ export class NumberComponent {
 
   @HostBinding('class.positive')
   get isPositive(): boolean {
-    console.log('isPositive');
-    console.log(this.enableColor);
-    console.log(this.value, this.value > 0);
-    console.log(this.enableColor && (this.value > 0));
     return this.enableColor && (this.value > 0);
   }
 
@@ -28,10 +24,5 @@ export class NumberComponent {
   @HostBinding('class.zero')
   get isZero(): boolean {
     return this.enableColor && (this.value === 0);
-  }
-
-  ngOnInit() {
-    console.log('enable', this.enableColor);
-    console.log('value', this.value);
   }
 }

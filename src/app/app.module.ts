@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { MarkitModule } from './vendor/markit/markit.module';
 import { QuoteModule } from './quote/quote.module';
+import { PortfolioModule } from './portfolio/portfolio.module';
 import { AppComponent } from './core/app.component';
 import * as tokens from './core/tokens';
 
@@ -17,7 +18,8 @@ import * as tokens from './core/tokens';
     FormsModule,
     HttpModule,
     MarkitModule,
-    QuoteModule
+    QuoteModule,
+    PortfolioModule
   ],
   providers: [
     { provide: tokens.USE_LOCAL_STORAGE, useValue: true },

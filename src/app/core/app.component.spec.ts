@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
@@ -14,6 +14,9 @@ import { MockQuoteService } from '../quote/testing';
 
 import { MarkitQuoteService } from '../vendor/markit';
 import { MockMarkitQuoteService} from '../vendor/markit/testing';
+import * as tokens from './tokens';
+
+const testAppVersion = 'v0.1.5';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -31,14 +34,26 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: QuoteService, useClass: MockQuoteService },
-        { provide: MarkitQuoteService, useClass: MockMarkitQuoteService }
+        { provide: MarkitQuoteService, useClass: MockMarkitQuoteService },
+        { provide: tokens.APP_VERSION, useValue: testAppVersion }
       ]
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should cache the app version', () => {
+    expect(component.version).toEqual(testAppVersion);
+  });
 });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable,
   BehaviorSubject } from 'rxjs/Rx';
 import { Quote, QuoteFactory } from '../quote';
-import { SavedQuotesService } from './saved-quotes.service';
+import { PortfolioService } from '../../portfolio/services/portfolio.service';
 import { MarkitQuoteService } from '../../vendor/markit';
 import { MarkitQuote } from '../../vendor/markit';
 
@@ -11,7 +11,7 @@ export class QuoteService {
 
   constructor(
     private markitQuoteService: MarkitQuoteService,
-    private savedQuotesService: SavedQuotesService
+    private portfolioService: PortfolioService
   ) { }
 
 
@@ -19,7 +19,10 @@ export class QuoteService {
    * Saved Quotes
    */
   get savedQuotes(): Observable<Quote[]> {
-    return this.savedQuotesService.savedQuotes;
+    // return this.portfolioService
+    return this.portfolioService.activePortfolio
+      .filter(port => !!port)
+      .map(port => port.quotes);
   }
 
 
@@ -56,21 +59,22 @@ export class QuoteService {
    * Saves the active quote to the saved quotes array
    */
   saveActiveQuote() {
-    this.savedQuotesService.saveQuote(this._activeQuote);
+    // this.savedQuotesService.saveQuote(this._activeQuote);
+    // this.portfolioService.
   }
 
   /**
    * Removes a quote from the saved quotes
    */
   removeQuote(q: Quote) {
-    this.savedQuotesService.removeQuote(q);
+    // this.savedQuotesService.removeQuote(q);
   }
 
   /**
    * Clear Saved Quotes
    */
   clearSavedQuotes() {
-    this.savedQuotesService.clearQuotes();
+    // this.savedQuotesService.clearQuotes();
   }
 
 

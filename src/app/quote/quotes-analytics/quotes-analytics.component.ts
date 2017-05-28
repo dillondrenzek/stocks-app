@@ -19,14 +19,18 @@ export class QuotesAnalyticsComponent implements OnInit {
   @Input() quotes: Quote[] = [];
 
   get lastPriceSum(): number {
-    return this.quotes
-      .map(quote => quote.lastPrice)
-      .reduce((prev: number, curr: number) => prev + curr, 0);
+    return (this.quotes)
+      ? this.quotes
+        .map(quote => quote.lastPrice)
+        .reduce((prev: number, curr: number) => prev + curr, 0)
+      : 0.00;
   }
   get dayChange(): number {
-    return this.quotes
-      .map(quote => quote.change)
-      .reduce((prev: number, curr: number) => prev + curr, 0);
+    return (this.quotes)
+      ? this.quotes
+        .map(quote => quote.change)
+        .reduce((prev: number, curr: number) => prev + curr, 0)
+      : 0.00;
   }
   get dayChangePercent(): number {
     return (this.lastPriceSum) ? (this.dayChange / this.lastPriceSum * 100) : 0;
