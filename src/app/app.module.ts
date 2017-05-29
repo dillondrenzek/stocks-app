@@ -23,7 +23,7 @@ import * as tokens from './core/tokens';
   ],
   providers: [
     { provide: tokens.USE_LOCAL_STORAGE, useValue: true },
-    { provide: tokens.APP_VERSION, useValue: 'v0.1.5' }
+    { provide: tokens.APP_VERSION, useValue: 'v0.1.6' }
   ],
   bootstrap: [AppComponent]
 })
