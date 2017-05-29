@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '../common/common.module';
 
+import { PortfolioPageComponent } from '../portfolio/portfolio-page/portfolio-page.component';
+
 import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
 import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
 import { QuoteDisplayComponent } from '../quote/quote-display/quote-display.component';
@@ -27,10 +29,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        QuotePageComponent,
-        QuoteListComponent,
-        QuoteDisplayComponent,
-        QuotesAnalyticsComponent
+        PortfolioPageComponent
       ],
       providers: [
         { provide: QuoteService, useClass: MockQuoteService },
