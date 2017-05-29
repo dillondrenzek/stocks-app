@@ -1,5 +1,7 @@
-import { Quote } from '../quote/quote';
+import { Holding } from './holding';
 
 export interface Portfolio {
-  quotes: Quote[];
+  holdings: Holding[];
+  dateModified: string;
+  dateCreated: string;
 }

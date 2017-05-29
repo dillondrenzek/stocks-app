@@ -23,7 +23,11 @@ export class PortfolioService {
    */
 
   // truth
-  private _activePortfolio: Portfolio = { quotes: [] };
+  private _activePortfolio: Portfolio = {
+    holdings: [],
+    dateModified: '1992-07-27',
+    dateCreated: '1992-07-27'
+  };
   // subject
   private activePortfolio$ = new BehaviorSubject<Portfolio>(this._activePortfolio);
 
@@ -38,23 +42,23 @@ export class PortfolioService {
 
 
 
-  /**
-   * Add Quote to Portfolio
-   */
-  addQuote(quote: Quote, portfolio: Portfolio): Observable<Portfolio> {
-    return Observable.of({
-      quotes: [ quote, ...portfolio.quotes]
-    });
-  }
-
-  /**
-   * Remove Quote from Portfolio
-   */
-  removeQuote(quote: Quote, portfolio: Portfolio): Observable<Portfolio> {
-    return Observable.of({
-      quotes: portfolio.quotes.filter(q => q !== quote)
-    });
-  }
+  // /**
+  //  * Add Quote to Portfolio
+  //  */
+  // addQuote(quote: Quote, portfolio: Portfolio): Observable<Portfolio> {
+  //   return Observable.of({
+  //     quotes: [ quote, ...portfolio.quotes]
+  //   });
+  // }
+  //
+  // /**
+  //  * Remove Quote from Portfolio
+  //  */
+  // removeQuote(quote: Quote, portfolio: Portfolio): Observable<Portfolio> {
+  //   return Observable.of({
+  //     quotes: portfolio.quotes.filter(q => q !== quote)
+  //   });
+  // }
 
 
 

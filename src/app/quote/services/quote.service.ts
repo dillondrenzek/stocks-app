@@ -22,7 +22,7 @@ export class QuoteService {
     // return this.portfolioService
     return this.portfolioService.activePortfolio
       .filter(port => !!port)
-      .map(port => port.quotes);
+      .map(port => []);
   }
 
 
