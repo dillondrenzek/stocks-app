@@ -3,7 +3,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { USE_LOCAL_STORAGE } from '../../core/tokens';
-import { Portfolio } from '../portfolio';
+import { Portfolio, NULL_PORTFOLIO } from '../portfolio';
 
 const PORTFOLIO_LOCALSTORAGE = 'portfolio';
 
@@ -26,12 +26,7 @@ export class ActivePortfolioService {
     // if (useLocalStorage) this.setActivePortfolio(this.getCachedPortfolio());
   }
 
-  private _activePortfolio: Portfolio = {
-    id: null,
-    holdings: [],
-    dateCreated: '',
-    dateModified: ''
-  };
+  private _activePortfolio: Portfolio = NULL_PORTFOLIO;
   private _activePortfolio$ = new BehaviorSubject<Portfolio>(this._activePortfolio);
 
   /**
@@ -56,12 +51,8 @@ export class ActivePortfolioService {
    * Resets the active portfolio to the default placeholder portfolio
    */
   resetActivePortfolio() {
-    this.setActivePortfolio({
-      id: null,
-      dateCreated: null,
-      dateModified: null, 
-      holdings: []
-    });
+    this._activePortfolio = NULL_PORTFOLIO;
+    this._activePortfolio$.next(this._activePortfolio);
   }
 
 

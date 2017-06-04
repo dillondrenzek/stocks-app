@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { Portfolio } from '../portfolio';
+import { Portfolio, NULL_PORTFOLIO } from '../portfolio';
 
 import { ActivePortfolioService } from './active-portfolio.service';
 
@@ -54,30 +54,13 @@ describe('ActivePortfolioService', () => {
   describe('resets active portfolio', () => {
 
     beforeEach(() => {
-      // set portfolio to reset
-      subject.setActivePortfolio({
-        id: 'valid',
-        holdings: [],
-        dateCreated: '',
-        dateModified: ''
-      });
-
       // perform test
       subject.resetActivePortfolio();
     });
 
-    it('to a non-null portfolio', (done) => {
+    it('to the NULL_PORTFOLIO', (done) => {
       subject.activePortfolio.subscribe((portfolio: Portfolio) => {
-        expect(portfolio).not.toBeNull();
-        done();
-      });
-    });
-
-    it('to an unsaved portfolio', (done) => {
-      subject.activePortfolio.subscribe((portfolio: Portfolio) => {
-        expect(portfolio.id).toBeNull();
-        expect(portfolio.dateCreated).toBeNull();
-        expect(portfolio.dateModified).toBeNull();
+        expect(portfolio).toBe(NULL_PORTFOLIO);
         done();
       });
     });

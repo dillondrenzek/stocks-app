@@ -4,7 +4,15 @@
 
 import { Holding } from './holding';
 
-
+/**
+ * An unsaved, effectively null portfolio
+ */
+export const NULL_PORTFOLIO: Portfolio = {
+  id: null,
+  dateCreated: null,
+  dateModified: null,
+  holdings: []
+};
 
 /**
  * Portfolio is a basic grouping of Holdings
