@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "predocs": "rm -rf docs",
-    "docs": "typedoc src/app --exclude \"**/*.spec.ts\" --out docs --readme docs/ --target ES5 --module commonjs --theme minimal",
+    "docs": "typedoc src/app --exclude \"**/*.spec.ts\" --out docs --readme docs/ --target ES5 --module commonjs --theme default",
     "docs:watch": "nodemon -v -e ts -w src/app --exec \"npm run docs\""
   },
   "watch": {
