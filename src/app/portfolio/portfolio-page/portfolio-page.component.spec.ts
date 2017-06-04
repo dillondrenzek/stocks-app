@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PortfolioPageComponent } from './portfolio-page.component';
+import { HoldingsTableComponent } from '../holdings-table/holdings-table.component';
 
 describe('PortfolioPageComponent', () => {
   let component: PortfolioPageComponent;
@@ -8,7 +9,7 @@ describe('PortfolioPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortfolioPageComponent ]
+      declarations: [ PortfolioPageComponent, HoldingsTableComponent ]
     })
     .compileComponents();
   }));

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '../common/common.module';
 
 import { PortfolioPageComponent } from '../portfolio/portfolio-page/portfolio-page.component';
+import { HoldingsTableComponent } from '../portfolio/holdings-table/holdings-table.component';
 
 import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
 import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
@@ -29,7 +30,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        PortfolioPageComponent
+        PortfolioPageComponent,
+        HoldingsTableComponent
       ],
       providers: [
         { provide: QuoteService, useClass: MockQuoteService },

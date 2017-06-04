@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ActivePortfolioService } from './services/active-portfolio.service';
 import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
+import { HoldingsTableComponent } from './holdings-table/holdings-table.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { PortfolioPageComponent } from './portfolio-page/portfolio-page.componen
     PortfolioPageComponent
   ],
   declarations: [
-    PortfolioPageComponent
+    PortfolioPageComponent,
+    HoldingsTableComponent
   ],
   providers: [
     ActivePortfolioService

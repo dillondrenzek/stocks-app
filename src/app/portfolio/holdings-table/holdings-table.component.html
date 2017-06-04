@@ -1,0 +1,13 @@
+<table class="table">
+
+  <tbody>
+
+    <tr *ngFor="let holding of holdings">
+      <td>{{holding.symbol}}</td>
+      <td>{{holding.quantity}}</td>
+      <td>${{holding.purchasePrice}}</td>
+    </tr>
+
+  </tbody>
+
+</table>
