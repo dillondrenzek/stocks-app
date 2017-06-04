@@ -7,7 +7,14 @@ import { Portfolio } from '../portfolio';
 const PORTFOLIO_LOCALSTORAGE = 'portfolio';
 
 
+/**
+ # PortfolioService
 
+ ## Requirements
+ - should use local storage to cache portfolios when configured
+
+
+ */
 @Injectable()
 export class PortfolioService {
 
@@ -24,6 +31,7 @@ export class PortfolioService {
 
   // truth
   private _activePortfolio: Portfolio = {
+    id: '1',
     holdings: [],
     dateModified: '1992-07-27',
     dateCreated: '1992-07-27'
@@ -42,9 +50,9 @@ export class PortfolioService {
 
 
 
-  // /**
-  //  * Add Quote to Portfolio
-  //  */
+  /**
+   * Add Quote to Portfolio
+   */
   // addQuote(quote: Quote, portfolio: Portfolio): Observable<Portfolio> {
   //   return Observable.of({
   //     quotes: [ quote, ...portfolio.quotes]

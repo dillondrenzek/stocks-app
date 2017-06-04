@@ -4,10 +4,9 @@ describe('PortfolioService', () => {
 
   let service: PortfolioService;
 
-  describe('addQuote', () => {
+  // describe('')
 
-    it('', () => {});
 
-  });
+  it('should attempt to fetch cached portfolio according to injected value', () => {});
 
 });

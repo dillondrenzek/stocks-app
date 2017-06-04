@@ -3,12 +3,24 @@
   "version": "0.1.6",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "watch": "npm-watch",
+    "start": "concurrently \"npm run serve\" \"npm run watch\"",
     "test": "ng test",
+    "serve": "ng serve",
+    "build": "ng build",
+    "postbuild": "npm run docs",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "predocs": "rm -rf docs",
+    "docs": "typedoc src/app --exclude \"**/*.spec.ts\" --out docs --readme docs/ --target ES5 --module commonjs --theme minimal",
+    "docs:watch": "nodemon -v -e ts -w src/app --exec \"npm run docs\""
+  },
+  "watch": {
+    "docs": {
+      "patterns": ["src/app"],
+      "extensions": "ts",
+      "quiet": false
+    }
   },
   "private": true,
   "dependencies": {
@@ -35,6 +47,7 @@
     "@types/jquery": "2.0.43",
     "@types/node": "~6.0.60",
     "codelyzer": "2.0.0",
+    "concurrently": "3.4.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "3.2.0",
     "karma": "1.4.1",
@@ -43,9 +56,12 @@
     "karma-coverage-istanbul-reporter": "0.2.0",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
+    "nodemon": "1.11.0",
+    "npm-watch": "0.1.9",
     "protractor": "5.1.0",
     "ts-node": "2.0.0",
     "tslint": "4.5.0",
+    "typedoc": "0.7.1",
     "typescript": "2.2.0"
   }
 }
