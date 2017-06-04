@@ -48,13 +48,13 @@
     </div>
 
     <div class="col-3">
-      <button type="button" class="btn btn-link">Edit</button>
+      <button type="button" class="btn btn-link" (click)="addRandomHolding()">Add Random</button>
     </div>
 
   </header>
 
 
-  <app-holdings-table></app-holdings-table>
+  <app-holdings-table [holdings]="holdings | async"></app-holdings-table>
 
 
 
