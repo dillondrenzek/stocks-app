@@ -4,6 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { USE_LOCAL_STORAGE } from '../../core/tokens';
 import { Portfolio, NULL_PORTFOLIO } from '../portfolio';
+import { Holding } from '../holding';
 
 const PORTFOLIO_LOCALSTORAGE = 'portfolio';
 
@@ -46,6 +47,13 @@ export class ActivePortfolioService {
     // if (this.useLocalStorage) this.pushCachedPortfolio(this._activePortfolio);
   }
 
+  addHolding(holding: Holding) {
+    const newHoldings: Holding[] = [
+      holding,
+      ...this._activePortfolio.holdings
+    ];
+    this.setActivePortfolio(Object.assign({}, this._activePortfolio, {holdings: newHoldings}));
+  }
 
   /**
    * Resets the active portfolio to the default placeholder portfolio

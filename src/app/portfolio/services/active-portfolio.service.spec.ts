@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { Portfolio, NULL_PORTFOLIO } from '../portfolio';
-
+import { Holding } from '../holding';
 import { ActivePortfolioService } from './active-portfolio.service';
 
 
@@ -16,8 +16,7 @@ describe('ActivePortfolioService', () => {
 
 
 
-
-  describe('sets the active portfolio', () => {
+  it('emits a new Portfolio object reference on change', (done) => {
 
     let testValue: Portfolio = {
       id: '1',
@@ -26,44 +25,59 @@ describe('ActivePortfolioService', () => {
       dateModified: ''
     };
 
-    beforeEach(() => {
-      // perform test
-      subject.setActivePortfolio(testValue);
-    });
+    // perform test
+    subject.setActivePortfolio(testValue);
 
-    it('emits new value', (done) => {
-      // subscribe to value stream (behavior subject)
-      subject.activePortfolio.subscribe((portfolio: Portfolio) => {
-          // expect same portfolio id
-          expect(portfolio.id).toEqual(testValue.id);
-          done();
-        });
-    });
-
-    it('should emit a different object', (done) => {
-      // subscribe to value stream (behavior subject)
-      subject.activePortfolio.subscribe((portfolio: Portfolio) => {
-          // expect object reference to change
-          expect(portfolio).not.toBe(testValue);
-          done();
-        });
+    // subscribe to value stream (behavior subject)
+    subject.activePortfolio.subscribe((portfolio: Portfolio) => {
+      // expect same portfolio id
+      expect(portfolio.id).toEqual(testValue.id);
+      // expect different object reference
+      expect(portfolio).not.toBe(testValue);
+      done();
     });
   });
 
 
-  describe('resets active portfolio', () => {
 
-    beforeEach(() => {
-      // perform test
-      subject.resetActivePortfolio();
+
+  it('resets active portfolio', (done) => {
+    // perform test
+    subject.resetActivePortfolio();
+    // subscribe to change in active portfolio
+    subject.activePortfolio.subscribe((portfolio: Portfolio) => {
+      expect(portfolio).toBe(NULL_PORTFOLIO);
+      done();
     });
-
-    it('to the NULL_PORTFOLIO', (done) => {
-      subject.activePortfolio.subscribe((portfolio: Portfolio) => {
-        expect(portfolio).toBe(NULL_PORTFOLIO);
-        done();
-      });
-    });
-
   });
+
+
+
+
+
+  it('adds a holding to the active portfolio', (done) => {
+    const testValue: Holding = {
+      symbol: 'TEST',
+      purchasePrice: 32.98,
+      datePurchased: null,
+      quantity: 2
+    };
+
+    // perform test
+    subject.addHolding(testValue);
+
+    // subscribe to change in active portfolio
+    subject.activePortfolio.subscribe((portfolio: Portfolio) => {
+      let symbols: string[] = portfolio.holdings.map((h: Holding) => h.symbol);
+      expect(symbols.indexOf(testValue.symbol)).toBeGreaterThan(-1);
+      done();
+    });
+  });
+
+
+  xit('removes a holding from the active portfolio', () => {});
+
+  xit('updates a holding in the active portfolio', () => {});
+
+
 });
