@@ -7,6 +7,7 @@ import { CommonModule } from '../common/common.module';
 
 import { PortfolioPageComponent } from '../portfolio/portfolio-page/portfolio-page.component';
 import { HoldingsTableComponent } from '../portfolio/holdings-table/holdings-table.component';
+import { ActivePortfolioService } from '../portfolio/services/active-portfolio.service';
 
 import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
 import { QuoteListComponent } from '../quote/quote-list/quote-list.component';
@@ -34,9 +35,11 @@ describe('AppComponent', () => {
         HoldingsTableComponent
       ],
       providers: [
+        ActivePortfolioService,
         { provide: QuoteService, useClass: MockQuoteService },
         { provide: MarkitQuoteService, useClass: MockMarkitQuoteService },
-        { provide: tokens.APP_VERSION, useValue: testAppVersion }
+        { provide: tokens.APP_VERSION, useValue: testAppVersion },
+        { provide: tokens.USE_LOCAL_STORAGE, useValue: false }
       ]
     }).compileComponents();
   }));
