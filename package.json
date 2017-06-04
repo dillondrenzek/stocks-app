@@ -17,7 +17,9 @@
   },
   "watch": {
     "docs": {
-      "patterns": ["src/app"],
+      "patterns": [
+        "src/app"
+      ],
       "extensions": "ts",
       "quiet": false
     }

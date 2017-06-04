@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable,
   BehaviorSubject } from 'rxjs/Rx';
 import { Quote, QuoteFactory } from '../quote';
-import { PortfolioService } from '../../portfolio/services/portfolio.service';
 import { MarkitQuoteService } from '../../vendor/markit';
 import { MarkitQuote } from '../../vendor/markit';
 
@@ -11,7 +10,7 @@ export class QuoteService {
 
   constructor(
     private markitQuoteService: MarkitQuoteService,
-    private portfolioService: PortfolioService
+    // private portfolioService: PortfolioService
   ) { }
 
 
@@ -20,9 +19,10 @@ export class QuoteService {
    */
   get savedQuotes(): Observable<Quote[]> {
     // return this.portfolioService
-    return this.portfolioService.activePortfolio
-      .filter(port => !!port)
-      .map(port => []);
+    // return this.portfolioService.activePortfolio
+    //   .filter(port => !!port)
+    //   .map(port => []);
+    return Observable.of([]);
   }
 
 

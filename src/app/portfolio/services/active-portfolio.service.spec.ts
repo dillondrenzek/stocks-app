@@ -9,6 +9,14 @@ describe('ActivePortfolioService', () => {
 
   let subject: ActivePortfolioService;
 
+  beforeEach(() => {
+    let useLocalStorage = false;
+    subject = new ActivePortfolioService(false);
+  });
+
+
+
+
   describe('sets the active portfolio', () => {
 
     let testValue: Portfolio = {
@@ -19,8 +27,6 @@ describe('ActivePortfolioService', () => {
     };
 
     beforeEach(() => {
-      subject = new ActivePortfolioService();
-
       // perform test
       subject.setActivePortfolio(testValue);
     });
@@ -42,5 +48,39 @@ describe('ActivePortfolioService', () => {
           done();
         });
     });
+  });
+
+
+  describe('resets active portfolio', () => {
+
+    beforeEach(() => {
+      // set portfolio to reset
+      subject.setActivePortfolio({
+        id: 'valid',
+        holdings: [],
+        dateCreated: '',
+        dateModified: ''
+      });
+
+      // perform test
+      subject.resetActivePortfolio();
+    });
+
+    it('to a non-null portfolio', (done) => {
+      subject.activePortfolio.subscribe((portfolio: Portfolio) => {
+        expect(portfolio).not.toBeNull();
+        done();
+      });
+    });
+
+    it('to an unsaved portfolio', (done) => {
+      subject.activePortfolio.subscribe((portfolio: Portfolio) => {
+        expect(portfolio.id).toBeNull();
+        expect(portfolio.dateCreated).toBeNull();
+        expect(portfolio.dateModified).toBeNull();
+        done();
+      });
+    });
+
   });
 });
