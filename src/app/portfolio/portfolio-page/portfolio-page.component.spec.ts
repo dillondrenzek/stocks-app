@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import * as tokens from '../../core/tokens';
 
 import { PortfolioPageComponent } from './portfolio-page.component';
 import { HoldingsTableComponent } from '../holdings-table/holdings-table.component';
+import { HoldingFormComponent } from '../holding-form/holding-form.component';
 import { ActivePortfolioService } from '../services/active-portfolio.service';
 
 describe('PortfolioPageComponent', () => {
@@ -12,7 +13,12 @@ describe('PortfolioPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortfolioPageComponent, HoldingsTableComponent ],
+      imports: [ReactiveFormsModule],
+      declarations: [
+        PortfolioPageComponent,
+        HoldingsTableComponent,
+        HoldingFormComponent
+      ],
       providers: [
         ActivePortfolioService,
         { provide: tokens.USE_LOCAL_STORAGE, useValue: false }

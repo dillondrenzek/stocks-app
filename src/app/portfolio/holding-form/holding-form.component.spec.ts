@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SimpleChange } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Holding } from '../holding';
 import { HoldingFormComponent } from './holding-form.component';
 
@@ -9,6 +10,7 @@ describe('HoldingFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [ HoldingFormComponent ]
     })
     .compileComponents();
@@ -50,5 +52,32 @@ describe('HoldingFormComponent', () => {
     for(let key in startValue) {
       expect(formValue[key]).toEqual(startValue[key]);
     }
+  });
+
+  it('resets the form value', () => {
+    let startValue: Holding = {
+      symbol: 'START',
+      purchasePrice: 123.90,
+      quantity: 3,
+      datePurchased: ''
+    };
+    component.startValue = startValue;
+    component.ngOnChanges({
+      'startValue': new SimpleChange(null, startValue, false)
+    });
+    fixture.detectChanges();
+    for(let key in startValue) {
+      // expect values to be there
+      expect(component.value[key]).toEqual(startValue[key]);
+    }
+    // perform test
+    component.reset();
+    fixture.detectChanges();
+
+    for(let key in startValue) {
+      // expect values to be falsy
+      expect(component.value[key]).toBeFalsy();
+    }
+
   });
 });

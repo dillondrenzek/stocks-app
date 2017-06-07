@@ -2,11 +2,12 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '../common/common.module';
 
 import { PortfolioPageComponent } from '../portfolio/portfolio-page/portfolio-page.component';
 import { HoldingsTableComponent } from '../portfolio/holdings-table/holdings-table.component';
+import { HoldingFormComponent } from '../portfolio/holding-form/holding-form.component';
 import { ActivePortfolioService } from '../portfolio/services/active-portfolio.service';
 
 import { QuotePageComponent } from '../quote/quote-page/quote-page.component';
@@ -27,12 +28,14 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [
         AppComponent,
         PortfolioPageComponent,
-        HoldingsTableComponent
+        HoldingsTableComponent,
+        HoldingFormComponent
       ],
       providers: [
         ActivePortfolioService,

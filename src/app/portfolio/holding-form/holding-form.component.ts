@@ -26,6 +26,10 @@ export class HoldingFormComponent implements OnInit {
 
   @Input() startValue: Holding = null;
 
+  reset() {
+    this._form.reset();
+  }
+
   ngOnInit() {
   }
 
