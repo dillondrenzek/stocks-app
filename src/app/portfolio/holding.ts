@@ -17,8 +17,14 @@ export interface Holding {
    */
   purchasePrice: number;
 
+  /**
+   * Number of shares
+   */
   quantity: number;
 
+  /**
+   * ISO-8601 Formatted string
+   */
   datePurchased: string;
 
 }

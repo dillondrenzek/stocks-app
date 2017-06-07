@@ -2,13 +2,13 @@
   <nav class="navbar navbar-light">
     <ul class="nav align-items-center nav-justified">
       <li class="nav-item">
-        <button type="button" class="btn btn-link disabled text-left">Refresh</button>
+        <!-- <button type="button" class="btn btn-link disabled text-left">Refresh</button> -->
       </li>
       <li class="nav-item">
         <span class="h2">Portfolio</span>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-link disabled text-right">Search</button>
+        <!-- <button type="button" class="btn btn-link disabled text-right">Search</button> -->
       </li>
     </ul>
   </nav>
@@ -23,15 +23,15 @@
 
   <section id="value" class="jumbotron">
 
-    <div class="col-12 display-4 text-center">$1,226.72</div>
+    <div class="col-12 display-4 text-center">${{(totalValue | async) | number:"1.2-2"}}</div>
 
-    <div class="row">
+    <!-- <div class="row">
 
       <div class="col-6 h5 text-right">+48.72</div>
 
       <div class="col-6 h5 text-left">(4.14%)</div>
 
-    </div>
+    </div> -->
 
   </section>
 
@@ -48,13 +48,18 @@
     </div>
 
     <div class="col-3">
-      <button type="button" class="btn btn-link" (click)="addRandomHolding()">Add Random</button>
+      <button type="button" class="btn btn-link" (click)="saveNewHolding(newHolding.value)">Add</button>
     </div>
 
   </header>
 
+  <div class="row">
+    <app-holding-form class="col-12" #newHolding></app-holding-form>
+  </div>
 
-  <app-holdings-table [holdings]="holdings | async"></app-holdings-table>
+  <div class="row">
+    <app-holdings-table class="col-12" [holdings]="holdings | async"></app-holdings-table>
+  </div>
 
 
 

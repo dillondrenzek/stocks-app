@@ -44,7 +44,7 @@ export class ActivePortfolioService {
     this._activePortfolio = Object.assign({}, portfolio);
     this._activePortfolio$.next(this._activePortfolio);
 
-    // if (this.useLocalStorage) this.pushCachedPortfolio(this._activePortfolio);
+    if (this.useLocalStorage) this.pushCachedPortfolio(this._activePortfolio);
   }
 
   addHolding(holding: Holding) {
@@ -66,27 +66,27 @@ export class ActivePortfolioService {
 
 
 
-  // /**
-  //  * Gets the cached Portfolio
-  //  */
-  // private getCachedPortfolio(): Portfolio {
-  //   let cached: string = localStorage.getItem(PORTFOLIO_LOCALSTORAGE);
-  //   let cachedPort: Portfolio = (cached)
-  //     ? <Portfolio>JSON.parse(cached)
-  //     : null;
-  //   return cachedPort;
-  // }
-  //
-  // /**
-  //  * Sets the cached Portfolio
-  //  * NOTE: if passed falsy value, clears cache
-  //  */
-  // private pushCachedPortfolio(p: Portfolio) {
-  //   if (!p) {
-  //     localStorage.removeItem(PORTFOLIO_LOCALSTORAGE);
-  //   } else {
-  //     localStorage.setItem(PORTFOLIO_LOCALSTORAGE, JSON.stringify(p));
-  //   }
-  // }
+  /**
+   * Gets the cached Portfolio
+   */
+  private getCachedPortfolio(): Portfolio {
+    let cached: string = localStorage.getItem(PORTFOLIO_LOCALSTORAGE);
+    let cachedPort: Portfolio = (cached)
+      ? <Portfolio>JSON.parse(cached)
+      : null;
+    return cachedPort;
+  }
+
+  /**
+   * Sets the cached Portfolio
+   * NOTE: if passed falsy value, clears cache
+   */
+  private pushCachedPortfolio(p: Portfolio) {
+    if (!p) {
+      localStorage.removeItem(PORTFOLIO_LOCALSTORAGE);
+    } else {
+      localStorage.setItem(PORTFOLIO_LOCALSTORAGE, JSON.stringify(p));
+    }
+  }
 
 }

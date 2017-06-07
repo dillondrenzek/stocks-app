@@ -39,3 +39,16 @@ export interface Portfolio {
    */
   dateCreated: string;
 }
+
+
+
+
+
+export const PortfolioReducers = {
+
+  totalValue: (p: Portfolio): number => {
+    let prices: number[] = p.holdings.map((holding: Holding) => holding.purchasePrice * holding.quantity);
+    return prices.reduce((acc, curr) => acc + curr, 0);
+  }
+
+};

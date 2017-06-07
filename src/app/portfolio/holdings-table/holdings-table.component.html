@@ -1,11 +1,25 @@
 <table class="table">
 
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Quantity</th>
+      <th>Purchased At</th>
+      <th>Total Value</th>
+    </tr>
+  </thead>
+
   <tbody>
 
     <tr *ngFor="let holding of holdings">
       <td>{{holding.symbol}}</td>
       <td>{{holding.quantity}}</td>
       <td>${{holding.purchasePrice}}</td>
+      <td>${{holding.quantity * holding.purchasePrice}}</td>
+    </tr>
+
+    <tr *ngIf="!holdings || !holdings.length">
+      <td class="text-center">No Holdings</td>
     </tr>
 
   </tbody>
