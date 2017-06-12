@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ActivePortfolioService } from './services/active-portfolio.service';
+import { PortfolioStorageService } from './services/portfolio-storage.service';
 import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
 import { HoldingsTableComponent } from './holdings-table/holdings-table.component';
 import { HoldingFormComponent } from './holding-form/holding-form.component';
@@ -21,7 +22,8 @@ import { HoldingFormComponent } from './holding-form/holding-form.component';
     HoldingFormComponent
   ],
   providers: [
-    ActivePortfolioService
+    ActivePortfolioService,
+    PortfolioStorageService
   ]
 })
 export class PortfolioModule { }
