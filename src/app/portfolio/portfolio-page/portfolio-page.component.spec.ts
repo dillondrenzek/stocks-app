@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as tokens from '../../core/tokens';
 
@@ -17,6 +19,7 @@ describe('PortfolioPageComponent', () => {
   let activePortfolioSvc: ActivePortfolioService;
   let portfolioStorageSvc: PortfolioStorageService;
   let fixture: ComponentFixture<PortfolioPageComponent>;
+  let debug: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,9 +50,20 @@ describe('PortfolioPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioPageComponent);
     component = fixture.componentInstance;
-    activePortfolioSvc = fixture.debugElement.injector.get(ActivePortfolioService);
-    portfolioStorageSvc = fixture.debugElement.injector.get(PortfolioStorageService);
+    debug = fixture.debugElement;
+    activePortfolioSvc = debug.injector.get(ActivePortfolioService);
+    portfolioStorageSvc = debug.injector.get(PortfolioStorageService);
     fixture.detectChanges();
+  });
+
+  it('should call saveNewHolding when add button is clicked', () => {
+
+    let addButton: DebugElement = debug.query(By.css('button.add-holding'));
+    spyOn(component, 'saveNewHolding');
+
+    // perform
+    addButton.triggerEventHandler('click', null);
+    expect(component.saveNewHolding).toHaveBeenCalled();
   });
 
   describe('when active portfolio is null', () => {
