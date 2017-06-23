@@ -20,12 +20,10 @@ import { PortfolioStorageService } from '../../services/portfolio-storage.servic
  *
  */
 @Injectable()
-export class MockActivePortfolioService implements ActivePortfolioService {
+export class MockActivePortfolioService extends ActivePortfolioService {
 
   constructor(
-    private portfolioStorage: PortfolioStorageService
-  ) {
-  }
-
+    protected portfolioStorage: PortfolioStorageService
+  ) { super(portfolioStorage); }
 
 }

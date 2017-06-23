@@ -10,7 +10,7 @@ const PORTFOLIO_LOCALSTORAGE = 'portfolio';
 export class PortfolioStorageService {
 
   constructor(
-    @Inject(USE_LOCAL_STORAGE) private useLocalStorage: boolean
+    @Inject(USE_LOCAL_STORAGE) protected useLocalStorage: boolean
   ) { }
 
   /**

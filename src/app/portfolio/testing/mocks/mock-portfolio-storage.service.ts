@@ -8,11 +8,11 @@ const PORTFOLIO_LOCALSTORAGE = 'portfolio';
 
 
 @Injectable()
-export class MockPortfolioStorageService implements PortfolioStorageService {
+export class MockPortfolioStorageService extends PortfolioStorageService {
 
   constructor(
-    @Inject(USE_LOCAL_STORAGE) private useLocalStorage: boolean
-  ) {}
+    @Inject(USE_LOCAL_STORAGE) protected useLocalStorage: boolean
+  ) { super(useLocalStorage); }
 
 
 }

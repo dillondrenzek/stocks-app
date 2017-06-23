@@ -22,7 +22,7 @@ import { PortfolioStorageService } from './portfolio-storage.service';
 export class ActivePortfolioService {
 
   constructor(
-    private portfolioStorage: PortfolioStorageService
+    protected portfolioStorage: PortfolioStorageService
   ) {
     // Pull Cached Portfolio from storage
     this.setActivePortfolio(this.portfolioStorage.getCachedPortfolio());
