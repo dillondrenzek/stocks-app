@@ -1,7 +1,7 @@
 /** @module ActivePortfolioService *//** */
 
 import { Injectable, Inject } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { USE_LOCAL_STORAGE } from '../../core/tokens';
 import { Portfolio, NULL_PORTFOLIO } from '../portfolio';
 import { Holding } from '../holding';
@@ -29,7 +29,7 @@ export class ActivePortfolioService {
   }
 
   private _activePortfolio: Portfolio = null;
-  private _activePortfolio$ = new BehaviorSubject<Portfolio>(this._activePortfolio);
+  private _activePortfolio$ = new BehaviorSubject<Portfolio>(null);
 
   /**
    * Active portfolio as an Observable
@@ -40,11 +40,21 @@ export class ActivePortfolioService {
 
 
   addHolding(holding: Holding) {
-    const newHoldings: Holding[] = [
-      holding,
-      ...this._activePortfolio.holdings
-    ];
-    this.setActivePortfolio(Object.assign({}, this._activePortfolio, {holdings: newHoldings}));
+    // const newHoldings: Holding[] = [
+    //   holding,
+    //   ...this._activePortfolio.holdings
+    // ];
+    // this.setActivePortfolio(Object.assign({}, this._activePortfolio, {holdings: newHoldings}));
+  }
+
+
+
+  /**
+   * Gets the active portfolio
+   * @return { Portfolio }
+   */
+  getActivePortfolio(): Portfolio {
+    return this._activePortfolio;
   }
 
   /**
