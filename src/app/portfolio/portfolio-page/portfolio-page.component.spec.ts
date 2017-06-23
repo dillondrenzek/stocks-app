@@ -47,8 +47,8 @@ describe('PortfolioPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioPageComponent);
     component = fixture.componentInstance;
-    activePortfolioSvc = fixture.componentRef.injector.get(ActivePortfolioService);
-    portfolioStorageSvc = fixture.componentRef.injector.get(PortfolioStorageService);
+    activePortfolioSvc = fixture.debugElement.injector.get(ActivePortfolioService);
+    portfolioStorageSvc = fixture.debugElement.injector.get(PortfolioStorageService);
     fixture.detectChanges();
   });
 
@@ -56,17 +56,20 @@ describe('PortfolioPageComponent', () => {
 
     beforeEach(async(() => {
       activePortfolioSvc.setActivePortfolio(null);
+      // fixture.detectChanges();
     }));
 
-    it('holdings should emit an empty array', (done) => {
+    it('total value should be 0.00', () => {
+      component.totalValue.subscribe((val: number) => {
+        expect(val).toEqual(0.00);
+      });
+    });
 
+    it('holdings should emit an empty array', () => {
       component.holdings.subscribe((h: Holding[]) => {
         expect(h).toBeDefined();
         expect(h.length).toBe(0);
-        done();
       });
-
     });
-
   });
 });
