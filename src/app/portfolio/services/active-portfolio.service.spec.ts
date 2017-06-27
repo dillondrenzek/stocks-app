@@ -5,6 +5,7 @@ import { Holding } from '../holding';
 import { ActivePortfolioService } from './active-portfolio.service';
 import { PortfolioStorageService } from './portfolio-storage.service';
 import * as ex from '../testing/examples/portfolio';
+import * as holding_ex from '../testing/examples/holding';
 
 describe('ActivePortfolioService', () => {
 
@@ -27,35 +28,32 @@ describe('ActivePortfolioService', () => {
     });
   });
 
-  describe( 'when not injected with a portfolio storage service', () => {
-    beforeEach(() => {
-      storage = new PortfolioStorageService(false);
-      spyOn(storage, 'getCachedPortfolio');
-      subject = new ActivePortfolioService(storage);
-    });
-    describe('#constructor()', () => {
-      it( 'should not attempt to get a cached portfolio', () => {
-        expect(storage.getCachedPortfolio).not.toHaveBeenCalled();
-      });
-    });
-  });
 
-
-
+  // Assumes:
+  // - no active portfolio set after construction
   describe( 'when no active portfolio is set', () => {
-    // no active portfolio set after construction
+
     describe( '#getActivePortfolio()', () => {
       it('should return null', () => {
         let test = subject.getActivePortfolio();
         expect(test).toBeNull();
       });
     });
+
     describe( '#activePortfolio', () => {
       it('should emit null', (done) => {
         subject.activePortfolio.subscribe(p => {
           expect(p).toBeNull();
           done();
         });
+      });
+    });
+
+    describe( '#addHolding()', () => {
+      it('should throw an error', () => {
+        const test: Holding = holding_ex.generateRandomHolding();
+        let add = () => subject.addHolding(test);
+        expect(add).toThrow();
       });
     });
   });
@@ -85,6 +83,30 @@ describe('ActivePortfolioService', () => {
           expect(p.id).toEqual(activePortfolio.id);
         });
       }));
+    });
+    describe( '#addHolding()', () => {
+      it('should add a holding', () => {
+        const test: Holding = holding_ex.generateRandomHolding();
+        subject.addHolding(test);
+        let holdings_symbols: string[] = subject.getActivePortfolio().holdings.map(h => h.symbol);
+        expect(holdings_symbols).toContain(test.symbol);
+      });
+    });
+  });
+
+  describe( 'when adding a holding that already exists', () => {
+
+    const test: Holding = holding_ex.generateRandomHolding();
+
+    beforeEach(() => {
+      subject.addHolding(test);
+    });
+
+    describe( '#addHolding()', () => {
+      it('should throw an error', () => {
+        let add = () => subject.addHolding(test);
+        expect(add).toThrow();
+      });
     });
   });
 

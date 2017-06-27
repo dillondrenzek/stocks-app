@@ -53,4 +53,6 @@ export class ActivePortfolioService {
     this._activePortfolio = portfolio;
     this._activePortfolio$.next(this._activePortfolio);
   }
+
+  addHolding(h: Holding) {}
 }

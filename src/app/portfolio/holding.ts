@@ -1,6 +1,8 @@
 
 /**
  * Holding represents a position held of a certain symbol
+ *
+ * 
  */
 export interface Holding {
 
