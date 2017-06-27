@@ -56,6 +56,14 @@ describe('ActivePortfolioService', () => {
         expect(add).toThrow();
       });
     });
+
+    describe( '#removeHolding()', () => {
+      it('should throw an error', () => {
+        const test: Holding = holding_ex.generateRandomHolding();
+        let remove = () => subject.removeHolding(test);
+        expect(remove).toThrow();
+      });
+    });
   });
 
 
@@ -75,6 +83,7 @@ describe('ActivePortfolioService', () => {
         expect(test.id).toEqual(activePortfolio.id);
       });
     });
+
     describe( '#activePortfolio', () => {
       it('should emit the active portfolio', fakeAsync(() => {
         tick();
@@ -84,24 +93,24 @@ describe('ActivePortfolioService', () => {
         });
       }));
     });
+
     describe( '#addHolding()', () => {
+
       it('should add a holding', () => {
         const test: Holding = holding_ex.generateRandomHolding();
         subject.addHolding(test);
         let holdings_symbols: string[] = subject.getActivePortfolio().holdings.map(h => h.symbol);
         expect(holdings_symbols).toContain(test.symbol);
       });
-    });
 
-    describe( 'when adding a holding that already exists', () => {
+      describe( 'when adding a holding that already exists', () => {
 
-      const test: Holding = holding_ex.generateRandomHolding();
+        const test: Holding = holding_ex.generateRandomHolding();
 
-      beforeEach(() => {
-        subject.addHolding(test);
-      });
+        beforeEach(() => {
+          subject.addHolding(test);
+        });
 
-      describe( '#addHolding()', () => {
         it('should throw an error', () => {
           expect(subject.getActivePortfolio().holdings.map(h => h.symbol)).toContain(test.symbol);
           let add = () => subject.addHolding(test);
@@ -109,8 +118,39 @@ describe('ActivePortfolioService', () => {
         });
       });
     });
+
+    describe( '#removeHolding()', () => {
+      describe( 'when removing a holding that already exists', () => {
+
+        const add_holding: Holding = holding_ex.generateRandomHolding();
+
+        beforeEach(() => {
+          subject.addHolding(add_holding);
+        });
+
+        it('should remove the holding', () => {
+          // expect holding to exist
+          expect(subject.getActivePortfolio().holdings.map(h => h.symbol)).toContain(add_holding.symbol);
+          // remove holding
+          subject.removeHolding(add_holding);
+          // expect holding to be gone
+          expect(subject.getActivePortfolio().holdings.map(h => h.symbol)).not.toContain(add_holding.symbol);
+        });
+      });
+      describe( 'when removing a holding that does not already exist', () => {
+
+        const add_holding: Holding = holding_ex.generateRandomHolding();
+
+        it('should throw an error', () => {
+          // expect holding not to exist
+          expect(subject.getActivePortfolio().holdings.map(h => h.symbol)).not.toContain(add_holding.symbol);
+          // remove holding operation
+          let remove = () => subject.removeHolding(add_holding);
+          // expect remove to throw an error
+          expect(remove).toThrow();
+        });
+      });
+    });
+
   });
-
-
-
 });

@@ -98,7 +98,6 @@ describe('PortfolioPageComponent', () => {
 
     beforeEach(async(() => {
       activePortfolioSvc.setActivePortfolio(null);
-      // fixture.detectChanges();
     }));
 
     it('total value should be 0.00', () => {

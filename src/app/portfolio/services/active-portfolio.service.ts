@@ -70,6 +70,16 @@ export class ActivePortfolioService {
   }
 
   /**
+   * [NEEDS DOCUMENTATION]
+   */
+  removeHolding(h: Holding) {
+    
+
+
+
+  }
+
+  /**
    * Throws an error when no active portfolio exists
    */
   private testPortfolioExists() {
