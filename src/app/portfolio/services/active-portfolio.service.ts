@@ -54,6 +54,9 @@ export class ActivePortfolioService {
     this._activePortfolio$.next(this._activePortfolio);
   }
 
+  /**
+   * [NEEDS DOCUMENTATION]
+   */
   addHolding(h: Holding) {
     // make sure portfolio exists
     this.testPortfolioExists();
@@ -73,6 +76,9 @@ export class ActivePortfolioService {
     if (!this._activePortfolio) throw new Error('Tried to add a Holding when no active portfolio was set.');
   }
 
+  /**
+   * Throws an error when portfolio already contains the given holding
+   */
   private testPortfolioDoesNotContainHolding(h: Holding) {
     let symbols: string[] = this._activePortfolio.holdings.map(h => h.symbol);
     if (symbols.indexOf(h.symbol) > -1) throw new Error('Tried to add a Holding that already exists in the active portfolio.');

@@ -58,24 +58,37 @@ describe('PortfolioPageComponent', () => {
 
   describe('when add button is clicked', () => {
 
-    // let addButton: DebugElement;
-    //
-    // beforeEach(() => {
-    //   addButton = debug.query(By.css('button.add-holding'));
-    //   spyOn(component, 'saveNewHolding');
-    //   spyOn(activePortfolioSvc, 'addHolding');
-    //   // perform click
-    //   addButton.triggerEventHandler('click', null);
-    //   fixture.detectChanges();
-    // });
-    //
-    // it('should call the event handler', () => {
-    //   expect(component.saveNewHolding).toHaveBeenCalled();
-    // });
-    // it('should add the holding to the active portfolio', () => {
-    //   expect(activePortfolioSvc.addHolding).toHaveBeenCalled();
-    // });
+    let addButton: DebugElement;
+
+    beforeEach(() => {
+
+      // spy: template event handlers
+      spyOn(component, 'clickedAddHoldingButton').and.callThrough(); // NOTE callThrough: next two spies will get called, not intercepted
+      // spy: handler callees
+      spyOn(component.holdingForm, 'reset');
+      spyOn(activePortfolioSvc, 'addHolding');
+
+      // perform click
+      addButton = debug.query(By.css('button.add-holding'));
+      addButton.triggerEventHandler('click', null);
+      fixture.detectChanges();
+    });
+
+    it('should call the event handler', () => {
+      expect(component.clickedAddHoldingButton).toHaveBeenCalled();
+    });
+
+    it('should add a holding to active portfolio', () => {
+      expect(activePortfolioSvc.addHolding).toHaveBeenCalled();
+    });
+
+    it('should reset the new holding form\'s value', () => {
+      expect(component.holdingForm.reset).toHaveBeenCalled();
+    });
+
   });
+
+
 
   describe('when active portfolio is null', () => {
 

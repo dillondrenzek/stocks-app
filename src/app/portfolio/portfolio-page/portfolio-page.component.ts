@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ActivePortfolioService } from '../services/active-portfolio.service';
 import { Portfolio, PortfolioReducers } from '../portfolio';
 import { Holding } from '../holding';
+
+import { HoldingFormComponent } from '../holding-form/holding-form.component';
 
 @Component({
   selector: 'app-portfolio-page',
@@ -25,9 +27,22 @@ export class PortfolioPageComponent implements OnInit {
     });
   }
 
-  saveNewHolding(h: Holding) {
-    // this.activePortfolioService.addHolding(h);
+  @ViewChild(HoldingFormComponent) holdingForm: HoldingFormComponent;
+
+  /**
+   * Template Handler: Clicked Add Button
+   * - adds holding to active portfolio service
+   * - resets the holding form's value
+   */
+  clickedAddHoldingButton(){
+    // get current holding form value
+    let newHolding: Holding = this.holdingForm.value;
+    // add holding to active portfolio
+    this.activePortfolioService.addHolding(newHolding);
+    // reset holding form
+    this.holdingForm.reset();
   }
+
 
 
   ngOnInit() {
