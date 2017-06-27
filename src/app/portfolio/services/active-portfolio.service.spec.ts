@@ -27,6 +27,19 @@ describe('ActivePortfolioService', () => {
     });
   });
 
+  describe( 'when not injected with a portfolio storage service', () => {
+    beforeEach(() => {
+      storage = new PortfolioStorageService(false);
+      spyOn(storage, 'getCachedPortfolio');
+      subject = new ActivePortfolioService(storage);
+    });
+    describe('#constructor()', () => {
+      it( 'should not attempt to get a cached portfolio', () => {
+        expect(storage.getCachedPortfolio).not.toHaveBeenCalled();
+      });
+    });
+  });
+
 
 
   describe( 'when no active portfolio is set', () => {
@@ -74,67 +87,5 @@ describe('ActivePortfolioService', () => {
       }));
     });
   });
-
-
-
-
-
-  //   it( 'emits a portfolio when there is an active portfolio', fakeAsync((done) => {
-  //
-  //     let test: Portfolio = {id: '1', holdings: [], dateCreated: null, dateModified: null};
-  //
-  //
-  //
-  //     subject.setActivePortfolio(test);
-  //
-  //
-  //     tick();
-  //     console.warn('subject', subject);
-  //
-  //     subject.activePortfolio
-  //       // .skip(1)
-  //       .subscribe((port: Portfolio) => {
-  //         expect(port).not.toBeUndefined();
-  //         expect(port).not.toBeNull();
-  //         expect(port.id).toEqual(test.id);
-  //         console.warn(port);
-  //         done();
-  //       });
-  //   }));
-  //
-  //
-  //
-  //   it( 'emits null when there is no active portfolio', (done) => {
-  //
-  //     subject.setActivePortfolio(null);
-  //
-  //     subject.activePortfolio
-  //       .subscribe((port: Portfolio) => {
-  //         expect(port).toBeNull();
-  //         done();
-  //       });
-  //   });
-  //
-  //   it('adds a holding to the active portfolio', (done) => {
-  //
-  //     let add: Holding = { symbol: 'xcdf', quantity: 1, datePurchased: null, purchasePrice: 0.00 };
-  //
-  //     subject.addHolding(add);
-  //
-  //     subject.activePortfolio
-  //       .map(p => p.holdings.map(h => h.symbol))
-  //       .subscribe((holdingSymbols: string[]) => {
-  //         expect(holdingSymbols).toContain(add.symbol);
-  //         done();
-  //       });
-  //
-  //
-  //   });
-  //
-  //   xit('removes a holding from the active portfolio', () => {});
-  //
-  //   xit('updates a holding in the active portfolio', () => {});
-  //
-  // });
 
 });

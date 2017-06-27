@@ -12,6 +12,12 @@ describe('PortfolioStorageService', () => {
     });
   });
 
+  describe('#getCachedPortfolio()', () => {
+    it('should return null when no portfolio is cached', () => {
+
+    });
+  });
+
   describe('when configured not to use local storage', () => {
 
     beforeEach(() => {
@@ -23,7 +29,7 @@ describe('PortfolioStorageService', () => {
       });
     });
 
-    it('returns a null cached portfolio', inject([PortfolioStorageService], (service: PortfolioStorageService) => {
+    it('returns null', inject([PortfolioStorageService], (service: PortfolioStorageService) => {
       expect(service.getCachedPortfolio()).toBeNull();
     }));
 
