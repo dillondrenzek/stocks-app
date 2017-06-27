@@ -26,7 +26,7 @@ export class PortfolioPageComponent implements OnInit {
   }
 
   saveNewHolding(h: Holding) {
-    this.activePortfolioService.addHolding(h);
+    // this.activePortfolioService.addHolding(h);
   }
 
 

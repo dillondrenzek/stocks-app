@@ -36,19 +36,6 @@ export class ActivePortfolioService {
    */
   activePortfolio: Observable<Portfolio> = this._activePortfolio$.asObservable();
 
-
-
-
-  addHolding(holding: Holding) {
-    // const newHoldings: Holding[] = [
-    //   holding,
-    //   ...this._activePortfolio.holdings
-    // ];
-    // this.setActivePortfolio(Object.assign({}, this._activePortfolio, {holdings: newHoldings}));
-  }
-
-
-
   /**
    * Gets the active portfolio
    * @return { Portfolio }
@@ -62,21 +49,8 @@ export class ActivePortfolioService {
    * @param portfolio   The portfolio to set as active
    */
   setActivePortfolio(portfolio: Portfolio) {
-
-    this._activePortfolio = (this._activePortfolio)
-      ? Object.assign({}, portfolio)
-      : null;
-
+    if (!portfolio) portfolio = null;
+    this._activePortfolio = portfolio;
     this._activePortfolio$.next(this._activePortfolio);
   }
-
-
-  /**
-   * Resets the active portfolio to the default placeholder portfolio
-   */
-  resetActivePortfolio() {
-    this._activePortfolio = NULL_PORTFOLIO;
-    this._activePortfolio$.next(this._activePortfolio);
-  }
-
 }
