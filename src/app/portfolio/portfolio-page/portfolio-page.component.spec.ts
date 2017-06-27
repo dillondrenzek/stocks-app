@@ -78,8 +78,12 @@ describe('PortfolioPageComponent', () => {
       expect(component.clickedAddHoldingButton).toHaveBeenCalled();
     });
 
-    it('should add a holding to active portfolio', () => {
+    it('should add the holding form\'s value as a holding to the active portfolio', () => {
+      // expect addHolding to be called
       expect(activePortfolioSvc.addHolding).toHaveBeenCalled();
+      // expect addHolding to be called with the holding form's value
+      const expected = component.holdingForm.value;
+      expect(activePortfolioSvc.addHolding).toHaveBeenCalledWith(expected);
     });
 
     it('should reset the new holding form\'s value', () => {
