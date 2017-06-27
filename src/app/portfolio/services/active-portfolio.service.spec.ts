@@ -92,22 +92,25 @@ describe('ActivePortfolioService', () => {
         expect(holdings_symbols).toContain(test.symbol);
       });
     });
-  });
 
-  describe( 'when adding a holding that already exists', () => {
+    describe( 'when adding a holding that already exists', () => {
 
-    const test: Holding = holding_ex.generateRandomHolding();
+      const test: Holding = holding_ex.generateRandomHolding();
 
-    beforeEach(() => {
-      subject.addHolding(test);
-    });
+      beforeEach(() => {
+        subject.addHolding(test);
+      });
 
-    describe( '#addHolding()', () => {
-      it('should throw an error', () => {
-        let add = () => subject.addHolding(test);
-        expect(add).toThrow();
+      describe( '#addHolding()', () => {
+        it('should throw an error', () => {
+          expect(subject.getActivePortfolio().holdings.map(h => h.symbol)).toContain(test.symbol);
+          let add = () => subject.addHolding(test);
+          expect(add).toThrow();
+        });
       });
     });
   });
+
+
 
 });

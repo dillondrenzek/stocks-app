@@ -54,5 +54,27 @@ export class ActivePortfolioService {
     this._activePortfolio$.next(this._activePortfolio);
   }
 
-  addHolding(h: Holding) {}
+  addHolding(h: Holding) {
+    // make sure portfolio exists
+    this.testPortfolioExists();
+    // make sure portfolio doesn't already contain holding
+    this.testPortfolioDoesNotContainHolding(h);
+    // add holding
+    const new_holdings: Holding[] = [h, ...this._activePortfolio.holdings];
+    const new_portfolio: Portfolio = Object.assign({}, this._activePortfolio, { holdings: new_holdings });
+    // set new active portfolio
+    this.setActivePortfolio(new_portfolio);
+  }
+
+  /**
+   * Throws an error when no active portfolio exists
+   */
+  private testPortfolioExists() {
+    if (!this._activePortfolio) throw new Error('Tried to add a Holding when no active portfolio was set.');
+  }
+
+  private testPortfolioDoesNotContainHolding(h: Holding) {
+    let symbols: string[] = this._activePortfolio.holdings.map(h => h.symbol);
+    if (symbols.indexOf(h.symbol) > -1) throw new Error('Tried to add a Holding that already exists in the active portfolio.');
+  }
 }

@@ -13,7 +13,7 @@ describe('PortfolioStorageService', () => {
   });
 
   describe('#getCachedPortfolio()', () => {
-    it('should return null when no portfolio is cached', () => {
+    xit('should return null when no portfolio is cached', () => {
 
     });
   });
