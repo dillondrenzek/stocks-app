@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,8 @@ import { HoldingsTableComponent } from '../holdings-table/holdings-table.compone
 import { HoldingFormComponent } from '../holding-form/holding-form.component';
 import { ActivePortfolioService } from '../services/active-portfolio.service';
 import { PortfolioStorageService } from '../services/portfolio-storage.service';
+
+import * as holding_ex from '../testing/examples/holding';
 
 describe('PortfolioPageComponent', () => {
   let component: PortfolioPageComponent;
@@ -94,11 +96,58 @@ describe('PortfolioPageComponent', () => {
 
 
 
+  describe('has a holdings table', () => {
+
+    let subject: DebugElement;
+
+    beforeEach(() => {
+      subject = debug.query(By.directive(HoldingsTableComponent));
+    });
+
+    it('that is defined', () => {
+      // expect view child to be defined
+      expect(component.holdingsTable).toBeDefined();
+      // expect debug element to be defined
+      expect(subject).not.toBeNull();
+    })
+
+    it('that displays the portfolios holdings', fakeAsync(() => {
+      component.holdings.subscribe((holdings: Holding[]) => {
+        expect(component.holdingsTable.holdings).toEqual(holdings);
+      });
+    }));
+
+    describe('when harvest table removes a row', () => {
+
+      const test_holding: Holding = holding_ex.generateRandomHolding();
+
+      beforeEach(() => {
+        // set up spies
+        spyOn(component, 'tableRemovedHolding').and.callThrough();
+        spyOn(activePortfolioSvc, 'removeHolding');
+        // simulate holdings table remove holding event
+        component.holdingsTable.removeHolding.emit(test_holding);
+        fixture.detectChanges();
+      });
+
+      it('should call the event handler', () => {
+        expect(component.tableRemovedHolding).toHaveBeenCalledWith(test_holding);
+      });
+
+      it('should call the active portfolio service with the holding to be called', () => {
+        expect(activePortfolioSvc.removeHolding).toHaveBeenCalledWith(test_holding);
+      });
+    });
+  });
+
+
+
+
   describe('when active portfolio is null', () => {
 
-    beforeEach(async(() => {
+    beforeEach(() => {
       activePortfolioSvc.setActivePortfolio(null);
-    }));
+    });
 
     it('total value should be 0.00', () => {
       component.totalValue.subscribe((val: number) => {
@@ -106,11 +155,15 @@ describe('PortfolioPageComponent', () => {
       });
     });
 
-    it('holdings should emit an empty array', () => {
+    it('holdings should emit an empty array', fakeAsync(() => {
       component.holdings.subscribe((h: Holding[]) => {
         expect(h).toBeDefined();
         expect(h.length).toBe(0);
       });
-    });
+    }));
   });
+
+
+
+
 });

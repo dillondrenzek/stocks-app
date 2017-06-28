@@ -5,6 +5,7 @@ import { Portfolio, PortfolioReducers } from '../portfolio';
 import { Holding } from '../holding';
 
 import { HoldingFormComponent } from '../holding-form/holding-form.component';
+import { HoldingsTableComponent } from '../holdings-table/holdings-table.component';
 
 @Component({
   selector: 'app-portfolio-page',
@@ -28,6 +29,7 @@ export class PortfolioPageComponent implements OnInit {
   }
 
   @ViewChild(HoldingFormComponent) holdingForm: HoldingFormComponent;
+  @ViewChild(HoldingsTableComponent) holdingsTable: HoldingsTableComponent;
 
   /**
    * Template Handler: Clicked Add Button
@@ -43,7 +45,12 @@ export class PortfolioPageComponent implements OnInit {
     this.holdingForm.reset();
   }
 
-
+  /**
+   * Template handler: Holdings table removed a holding
+   */
+  tableRemovedHolding(h: Holding) {
+    this.activePortfolioService.removeHolding(h);
+  }
 
   ngOnInit() {
   }

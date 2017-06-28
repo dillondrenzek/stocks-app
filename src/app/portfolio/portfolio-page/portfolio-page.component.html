@@ -17,51 +17,35 @@
 
 <div class="container">
 
-
-
-
-
   <section id="value" class="jumbotron">
 
     <div class="col-12 display-4 text-center">${{(totalValue | async) | number:"1.2-2"}}</div>
 
-    <!-- <div class="row">
-
-      <div class="col-6 h5 text-right">+48.72</div>
-
-      <div class="col-6 h5 text-left">(4.14%)</div>
-
-    </div> -->
-
   </section>
 
+  <section id="holdings" class="container-fluid">
 
+    <header class="row align-items-center text-center">
 
-<section id="holdings" class="container-fluid">
+      <div class="col-3"></div>
 
-  <header class="row align-items-center text-center">
+      <div class="col-6">
+        <span class="h4">Holdings</span>
+      </div>
 
-    <div class="col-3"></div>
+      <div class="col-3">
+        <button type="button" class="btn btn-link add-holding" (click)="clickedAddHoldingButton()">Add</button>
+      </div>
 
-    <div class="col-6">
-      <span class="h4">Holdings</span>
+    </header>
+
+    <div class="row">
+      <app-holding-form class="col-12" #newHolding></app-holding-form>
     </div>
 
-    <div class="col-3">
-      <button type="button" class="btn btn-link add-holding" (click)="clickedAddHoldingButton()">Add</button>
+    <div class="row">
+      <app-holdings-table class="col-12" [holdings]="holdings | async" (removeHolding)="tableRemovedHolding($event)"></app-holdings-table>
     </div>
 
-  </header>
-
-  <div class="row">
-    <app-holding-form class="col-12" #newHolding></app-holding-form>
-  </div>
-
-  <div class="row">
-    <app-holdings-table class="col-12" [holdings]="holdings | async"></app-holdings-table>
-  </div>
-
-
-
-</section>
+  </section>
 </div>
