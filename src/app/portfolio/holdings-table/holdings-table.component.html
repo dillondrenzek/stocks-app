@@ -6,20 +6,22 @@
       <th>Quantity</th>
       <th>Purchased At</th>
       <th>Total Value</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
 
-    <tr *ngFor="let holding of holdings">
+    <tr class="holding" *ngFor="let holding of holdings">
       <td>{{holding.symbol}}</td>
       <td>{{holding.quantity}}</td>
       <td>${{holding.purchasePrice}}</td>
       <td>${{holding.quantity * holding.purchasePrice}}</td>
+      <td><button type="button" class="btn btn-danger remove-btn" (click)="clickedRemoveButton(holding)">Remove</button></td>
     </tr>
 
-    <tr *ngIf="!holdings || !holdings.length">
-      <td class="text-center">No Holdings</td>
+    <tr class="empty-state" *ngIf="!holdings || !holdings.length">
+      <td colspan="5" class="text-center">No Holdings</td>
     </tr>
 
   </tbody>

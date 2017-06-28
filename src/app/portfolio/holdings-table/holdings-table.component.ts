@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Holding } from '../holding';
 
@@ -7,13 +7,15 @@ import { Holding } from '../holding';
   templateUrl: './holdings-table.component.html',
   styleUrls: ['./holdings-table.component.css']
 })
-export class HoldingsTableComponent implements OnInit {
+export class HoldingsTableComponent {
 
   constructor() { }
 
   @Input() holdings: Holding[] = [];
 
-  ngOnInit() {
-  }
+  @Output() removeHolding = new EventEmitter<Holding>();
 
+  clickedRemoveButton(h: Holding) {
+    this.removeHolding.emit(h);
+  }
 }
