@@ -63,7 +63,7 @@ describe('HoldingsTableComponent', () => {
       expect(holding_rows.length).toEqual(test_holdings.length);
     });
 
-    describe('each row should display', () => {
+    describe('each row', () => {
 
       let subject: DebugElement;
       let subject_holding: Holding;
@@ -73,19 +73,44 @@ describe('HoldingsTableComponent', () => {
         subject_holding = test_holdings[0];
       });
 
-      describe('the holding\'s', () => {
-        it('symbol', () => {
-          expect(subject.nativeElement.innerText).toContain(subject_holding.symbol);
+      it('should display the holding\'s symbol', () => {
+        expect(subject.nativeElement.innerText).toContain(subject_holding.symbol);
+      });
+
+      it('should display the holding\'s purchase price', () => {
+        expect(subject.nativeElement.innerText).toContain(subject_holding.purchasePrice);
+      });
+
+      it('should display the holding\'s quantity purchased', () => {
+        expect(subject.nativeElement.innerText).toContain(subject_holding.quantity);
+      });
+
+      describe('when clicked', () => {
+
+        beforeEach(() => {
+          // spies
+          spyOn(component, 'clickedRow').and.callThrough();
+          spyOn(component.click, 'emit');
+          // click row
+          subject.triggerEventHandler('click', null);
+          fixture.detectChanges();
         });
-        it('purchase price', () => {
-          expect(subject.nativeElement.innerText).toContain(subject_holding.purchasePrice);
+
+        it('should call a click event handler', () => {
+          // expect handler to have been called
+          expect(component.clickedRow).toHaveBeenCalled();
+          // expect handler to have been called with the holding that was clicked
+          expect(component.clickedRow).toHaveBeenCalledWith(subject_holding);
         });
-        it('quantity purchased', () => {
-          expect(subject.nativeElement.innerText).toContain(subject_holding.quantity);
+        it('should emit a click event', () => {
+          // expect event to be emitted
+          expect(component.click.emit).toHaveBeenCalled();
+          // expect event to be emitted with holding that was clicked
+          expect(component.click.emit).toHaveBeenCalledWith(subject_holding);
         });
       });
 
-      describe('a remove button', () => {
+      describe('should have a remove button', () => {
 
         let button: DebugElement;
         let className = '.remove-btn';
@@ -94,7 +119,7 @@ describe('HoldingsTableComponent', () => {
           button = subject.query(By.css(className));
         });
 
-        it('in the row', () => {
+        it('displayed', () => {
           expect(button).not.toBeNull();
         });
 
@@ -117,7 +142,7 @@ describe('HoldingsTableComponent', () => {
             expect(component.clickedRemoveButton).toHaveBeenCalledWith(subject_holding);
           });
 
-          it('a remove event should be emitted', () => {
+          it('should emit a remove event', () => {
             // expect event to be emitted
             expect(component.removeHolding.emit).toHaveBeenCalled();
             // expect event to be emitted with holding to be removed

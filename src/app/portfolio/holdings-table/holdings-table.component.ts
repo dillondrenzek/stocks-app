@@ -13,7 +13,11 @@ export class HoldingsTableComponent {
 
   @Input() holdings: Holding[] = [];
 
+  @Output() click = new EventEmitter<Holding>();
+
   @Output() removeHolding = new EventEmitter<Holding>();
+
+  clickedRow() {}
 
   clickedRemoveButton(h: Holding) {
     this.removeHolding.emit(h);
