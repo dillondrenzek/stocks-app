@@ -17,7 +17,9 @@ export class HoldingsTableComponent {
 
   @Output() removeHolding = new EventEmitter<Holding>();
 
-  clickedRow() {}
+  clickedRow(h: Holding) {
+    this.click.emit(h);
+  }
 
   clickedRemoveButton(h: Holding) {
     this.removeHolding.emit(h);
