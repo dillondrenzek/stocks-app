@@ -117,7 +117,31 @@ describe('PortfolioPageComponent', () => {
       });
     }));
 
-    describe('when harvest table removes a row', () => {
+    describe('when a row is clicked', () => {
+
+      const test_holding: Holding = holding_ex.generateRandomHolding();
+
+      beforeEach(() => {
+        // set up spies
+        spyOn(component, 'tableSelectedHolding').and.callThrough();
+        // simulate holdings table remove holding event
+        component.holdingsTable.rowClick.emit(test_holding);
+        fixture.detectChanges();
+      });
+
+      it('should call the event handler', () => {
+        // expect the event handler to be called
+        expect(component.tableSelectedHolding).toHaveBeenCalled();
+        // expect the event handler to be called with value
+        expect(component.tableSelectedHolding).toHaveBeenCalledWith(test_holding);
+      });
+      it('should set the holding form\'s value to the selected holding', () => {
+        // expect the form's value to equal the emitted holding
+        expect(component.holdingForm.value).toEqual(test_holding);
+      });
+    });
+
+    describe('when a row is removed', () => {
 
       const test_holding: Holding = holding_ex.generateRandomHolding();
 
@@ -126,7 +150,7 @@ describe('PortfolioPageComponent', () => {
         spyOn(component, 'tableRemovedHolding').and.callThrough();
         spyOn(activePortfolioSvc, 'removeHolding');
         // simulate holdings table remove holding event
-        component.holdingsTable.removeHolding.emit(test_holding);
+        component.holdingsTable.rowRemove.emit(test_holding);
         fixture.detectChanges();
       });
 

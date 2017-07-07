@@ -13,15 +13,15 @@ export class HoldingsTableComponent {
 
   @Input() holdings: Holding[] = [];
 
-  @Output() click = new EventEmitter<Holding>();
+  @Output() rowClick = new EventEmitter<Holding>();
 
-  @Output() removeHolding = new EventEmitter<Holding>();
+  @Output() rowRemove = new EventEmitter<Holding>();
 
   clickedRow(h: Holding) {
-    this.click.emit(h);
+    this.rowClick.emit(h);
   }
 
   clickedRemoveButton(h: Holding) {
-    this.removeHolding.emit(h);
+    this.rowRemove.emit(h);
   }
 }

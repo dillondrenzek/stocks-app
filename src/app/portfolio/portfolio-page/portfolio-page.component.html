@@ -44,7 +44,9 @@
     </div>
 
     <div class="row">
-      <app-holdings-table class="col-12" [holdings]="holdings | async" (removeHolding)="tableRemovedHolding($event)"></app-holdings-table>
+      <app-holdings-table class="col-12" [holdings]="holdings | async"
+        (rowClick)="tableSelectedHolding($event)"
+        (rowRemove)="tableRemovedHolding($event)"></app-holdings-table>
     </div>
 
   </section>

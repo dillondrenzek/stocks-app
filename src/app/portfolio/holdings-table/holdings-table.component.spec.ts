@@ -90,7 +90,7 @@ describe('HoldingsTableComponent', () => {
         beforeEach(() => {
           // spies
           spyOn(component, 'clickedRow').and.callThrough();
-          spyOn(component.click, 'emit');
+          spyOn(component.rowClick, 'emit');
           // click row
           subject.triggerEventHandler('click', null);
           fixture.detectChanges();
@@ -102,11 +102,11 @@ describe('HoldingsTableComponent', () => {
           // expect handler to have been called with the holding that was clicked
           expect(component.clickedRow).toHaveBeenCalledWith(subject_holding);
         });
-        it('should emit a click event', () => {
+        it('should emit the "rowClick" event', () => {
           // expect event to be emitted
-          expect(component.click.emit).toHaveBeenCalled();
+          expect(component.rowClick.emit).toHaveBeenCalled();
           // expect event to be emitted with holding that was clicked
-          expect(component.click.emit).toHaveBeenCalledWith(subject_holding);
+          expect(component.rowClick.emit).toHaveBeenCalledWith(subject_holding);
         });
       });
 
@@ -128,7 +128,7 @@ describe('HoldingsTableComponent', () => {
           beforeEach(() => {
             // spy
             spyOn(component, 'clickedRemoveButton').and.callThrough();
-            spyOn(component.removeHolding, 'emit');
+            spyOn(component.rowRemove, 'emit');
 
             // click remove button
             button.triggerEventHandler('click', null);
@@ -144,9 +144,9 @@ describe('HoldingsTableComponent', () => {
 
           it('should emit a remove event', () => {
             // expect event to be emitted
-            expect(component.removeHolding.emit).toHaveBeenCalled();
+            expect(component.rowRemove.emit).toHaveBeenCalled();
             // expect event to be emitted with holding to be removed
-            expect(component.removeHolding.emit).toHaveBeenCalledWith(subject_holding);
+            expect(component.rowRemove.emit).toHaveBeenCalledWith(subject_holding);
           });
         });
       });

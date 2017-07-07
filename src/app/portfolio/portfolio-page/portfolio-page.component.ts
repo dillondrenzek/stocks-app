@@ -45,6 +45,10 @@ export class PortfolioPageComponent implements OnInit {
     this.holdingForm.reset();
   }
 
+  tableSelectedHolding(h: Holding) {
+    // this.holdingForm.value = h;
+  }
+
   /**
    * Template handler: Holdings table removed a holding
    */
